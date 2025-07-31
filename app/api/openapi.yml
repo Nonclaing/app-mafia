@@ -1,0 +1,55 @@
+openapi: 3.0.0
+info:
+  title: Example API
+  version: 1.0.0
+
+paths:
+  /rest/items:
+    get:
+      summary: Get list of items
+      operationId: getList
+      responses:
+        '200':
+          description: A list of items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+
+  /rest/items/{id}:
+    get:
+      summary: Get item by ID
+      operationId: getDetail
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the item
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A single item
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '404':
+          description: Item not found
+
+components:
+  schemas:
+    Item:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "123"
+        name:
+          type: string
+          example: "Sample item"
+        description:
+          type: string
+          example: "This is a sample item"
