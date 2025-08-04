@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { isEmpty } from "lodash-es";
 const { t } = useI18n({
   messages: {
     ru: {

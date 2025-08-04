@@ -36,4 +36,15 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
+  imports: {
+    imports: [
+      { from: "es-toolkit/compat", name: "get" },
+      { from: "es-toolkit/compat", name: "map" },
+      { from: "es-toolkit/compat", name: "find" },
+      { from: "es-toolkit/compat", name: "keys" },
+      { from: "es-toolkit/compat", name: "merge" },
+      { from: "es-toolkit/compat", name: "isEmpty" },
+      { from: "es-toolkit/compat", name: "toString" },
+    ],
+  },
 });

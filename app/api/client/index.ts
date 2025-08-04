@@ -1,4 +1,3 @@
-import { merge } from "lodash-es";
 import type { CancelablePromise } from "~/api/client/lib";
 import { Client } from "~/api/client/lib";
 import { FetchHttpRequest } from "~/api/client/lib/core/FetchHttpRequest";
