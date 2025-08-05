@@ -1,14 +1,9 @@
 @import "tailwindcss";
-@plugin "tailwind-scrollbar";
-@plugin "@tailwindcss/forms" {
-    strategy: "class";
+@plugin "daisyui" {
+    themes: light;
 }
-@theme {
-    --color-primary: #ef4024;
-}
-
-@layer components {
-    .button {
-        @apply inline-block cursor-pointer border-0 text-center align-middle leading-none text-nowrap decoration-0 transition-colors select-none;
-    }
+@plugin "daisyui/theme" {
+    name: light;
+    default: true;
+    --color-primary: #e31937;
 }

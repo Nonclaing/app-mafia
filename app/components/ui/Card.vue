@@ -24,13 +24,13 @@ const onChange = (e: Event) => {
     <VeeForm v-slot="{ errors }" class="grid gap-3" :initial-values="values" @submit="store.submit" @change="onChange">
       <div v-if="!isEmpty(errors)" class="mb-3 p-2 border-2 text-red-500">{{ errors }}</div>
       <div>
-        <VeeField name="name" class="form-input" rules="required" />
+        <VeeField name="name" class="input" rules="required" />
         <VeeErrorMessage v-slot="{ message }" name="name">
           <div class="text-red-500">{{ message }}</div>
         </VeeErrorMessage>
       </div>
       <div>
-        <button class="button bg-primary px-5 py-2 flex items-center gap-2 text-white">
+        <button class="btn btn-primary">
           {{ t('form.submit') }}
           <Icon name="mdi:arrow-right" />
         </button>
