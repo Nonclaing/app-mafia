@@ -1,7 +1,4 @@
-@import "tailwindcss/preflight";
-@import "tailwindcss/theme";
-
-@tailwind utilities;
+@import "tailwindcss";
 @plugin "tailwind-scrollbar";
 @plugin "@tailwindcss/forms" {
     strategy: "class";
