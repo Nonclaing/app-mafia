@@ -38,11 +38,11 @@ export default defineNuxtConfig({
   },
   imports: {
     imports: [
-      { from: "es-toolkit/compat", name: "get" },
-      { from: "es-toolkit/compat", name: "map" },
-      { from: "es-toolkit/compat", name: "find" },
-      { from: "es-toolkit/compat", name: "keys" },
-      { from: "es-toolkit/compat", name: "merge" },
+      { from: "es-toolkit/compat", name: "get", as: "useGet" },
+      { from: "es-toolkit/compat", name: "map", as: "useMap" },
+      { from: "es-toolkit/compat", name: "find", as: "useFind" },
+      { from: "es-toolkit/compat", name: "keys", as: "useKeys" },
+      { from: "es-toolkit/compat", name: "merge", as: "useMerge" },
       { from: "es-toolkit/compat", name: "isEmpty" },
       { from: "es-toolkit/compat", name: "toString" },
     ],
