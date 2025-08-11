@@ -12,6 +12,7 @@ export default withNuxt(
       "node_modules/**",
       "dist/**",
       ".nuxt/**",
+      ".api/**",
       ".output/**",
       "phpstorm.config.js",
     ],

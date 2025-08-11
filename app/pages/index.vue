@@ -1,5 +1,8 @@
 <script setup lang="ts">
-
+import getDetail from "~/api/services/default/get";
+watchEffect(() => {
+  getDetail("1");
+});
 </script>
 
 <template>

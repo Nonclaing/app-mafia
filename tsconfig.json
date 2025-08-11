@@ -1,9 +1,9 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
   "files": [],
-  "compilerOptions": {
-    "types": ["./types/toolkit-globals"]
-  },
+  "exclude": [
+    ".api"
+  ],
   "references": [
     {
       "path": "./.nuxt/tsconfig.app.json"

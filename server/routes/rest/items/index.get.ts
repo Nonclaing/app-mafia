@@ -1,4 +1,5 @@
-
 export default defineEventHandler(async () => {
-  return Object.values(await getFromData("items", {}));
+  const items = await getFromData("items", []);
+  if (items) return items;
+  throw createError({ statusCode: 404, statusMessage: "Элемент не найден" });
 });
