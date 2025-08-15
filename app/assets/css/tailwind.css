@@ -7,3 +7,7 @@
     default: true;
     --color-primary: #e31937;
 }
+@theme {
+    --font-sans: Roboto, sans-serif;
+    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}

@@ -11,6 +11,13 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxt/image",
     "@nuxt/eslint",
+    ["@nuxt/fonts", {
+      defaults: {
+        weights: ["100 900"],
+        styles: ["normal", "italic"],
+        subsets: ["cyrillic-ext", "cyrillic", "latin-ext", "latin"],
+      },
+    }],
     ["@nuxt/icon", {
       mode: "css",
       cssLayer: "base",
