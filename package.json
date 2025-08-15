@@ -1,5 +1,6 @@
 {
   "name": "nuxt-app",
+  "version": "1.0.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -27,13 +28,14 @@
     "@vee-validate/i18n": "^4.15.1",
     "@vee-validate/nuxt": "^4.15.1",
     "@vee-validate/rules": "^4.15.1",
+    "@vee-validate/yup": "^4.15.1",
     "@vueuse/nuxt": "^13.6.0",
     "axios": "^1.11.0",
     "daisyui": "^5.0.50",
     "es-toolkit": "^1.39.8",
     "eslint-plugin-vue": "^10.3.0",
     "lowdb": "^7.0.1",
-    "nuxt": "^4.0.1",
+    "nuxt": "^4.0.3",
     "stylelint-config-html": "^1.1.0",
     "tailwindcss": "^4.1.11",
     "vee-validate": "^4.15.1",

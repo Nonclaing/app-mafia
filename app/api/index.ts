@@ -1,6 +1,6 @@
-import { createClient } from "~~/.api/client/client.gen";
-import { createConfig } from "~~/.api/client";
+import { createConfig, createClient } from "~~/.api/client";
 import { get, set } from "es-toolkit/compat";
+export * from "~~/.api";
 const sessid = () => {
   if (typeof window !== "undefined") return get(window, "bx_config.sessid", "N");
   return "N";
