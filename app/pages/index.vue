@@ -6,9 +6,9 @@ watchEffect(() => {
 </script>
 
 <template>
-<div>
-  <UiCard />
-</div>
+  <div>
+    <UiCard />
+  </div>
 </template>
 
 <style module>
