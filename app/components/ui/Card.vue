@@ -20,7 +20,7 @@ const onChange = (e: Event) => {
 </script>
 
 <template>
-  <div class="border-2 p-8 ">
+  <div class='border-2 p-8'>
     <VeeForm v-slot="{ errors }" class="grid gap-3" :initial-values="values" @submit="store.submit" @change="onChange">
       <div v-if="!isEmpty(errors)" class="mb-3 p-2 border-2 text-red-500">{{ errors }}</div>
       <div>

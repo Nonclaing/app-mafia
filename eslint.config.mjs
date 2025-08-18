@@ -3,7 +3,12 @@ import vue from "eslint-plugin-vue";
 import tsParser from "@typescript-eslint/parser";
 import vueParser from "vue-eslint-parser";
 import stylistic from "@stylistic/eslint-plugin";
-import withNuxt from "./.nuxt/eslint.config.mjs";
+// ... existing code ...
+import withNuxt from "@nuxt/eslint-config/flat";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
+import globals from "globals";
+
+// ... existing code ...
 
 export default withNuxt(
   {
@@ -25,15 +30,13 @@ export default withNuxt(
         extraFileExtensions: [".vue"],
       },
       globals: {
-        window: "readonly",
-        document: "readonly",
-        module: "writable",
-        require: "readonly",
+        ...globals.browser,
       },
     },
     plugins: {
       vue,
       "@stylistic": stylistic,
+      "@typescript-eslint": tsPlugin,
     },
     rules: {
       "vue/no-template-shadow": "off",
@@ -41,10 +44,12 @@ export default withNuxt(
       "vue/max-attributes-per-line": "off",
       "vue/singleline-html-element-content-newline": "off",
 
-      "quotes": ["error", "double"],
-      "semi": ["error", "always"],
-      "indent": ["error", 2],
-      "max-len": ["error", {
+      // Стилевые правила
+      "@stylistic/quotes": ["error", "double"],
+      "@stylistic/semi": ["error", "always"],
+      "indent": "off",
+      "@stylistic/indent": ["error", 2],
+      "@stylistic/max-len": ["error", {
         code: 120,
         ignoreComments: true,
         ignoreUrls: true,
@@ -53,15 +58,26 @@ export default withNuxt(
         ignoreRegExpLiterals: true,
         ignorePattern: "^import\\s.+\\sfrom\\s.+;$",
       }],
-      "object-curly-spacing": ["error", "always"],
-      "arrow-parens": ["error", "always"],
-      "comma-dangle": ["error", "always-multiline"],
+      "@stylistic/object-curly-spacing": ["error", "always"],
+      "@stylistic/arrow-parens": ["error", "always"],
+      "@stylistic/comma-dangle": ["error", "always-multiline"],
+
+      // Консоль
       "no-console": ["warn", { allow: ["error"] }],
+
+      // TS-специфика
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": ["error", {
+        argsIgnorePattern: "^_",
+        varsIgnorePattern: "^_",
+        caughtErrorsIgnorePattern: "^_",
+      }],
     },
   },
   {
     files: ["**/*.vue"],
     rules: {
+      "indent": "off",
       "max-len": "off",
       "vue/max-len": ["error", {
         code: 120,
@@ -75,6 +91,12 @@ export default withNuxt(
         ignoreTemplateLiterals: true,
         ignoreRegExpLiterals: true,
         ignorePattern: "^import\\s.+\\sfrom\\s.+;$", // игнорировать длинные импорты
+      }],
+      "vue/html-indent": ["error", 2, {
+        attribute: 1,
+        baseIndent: 1,
+        closeBracket: 0,
+        alignAttributesVertically: true,
       }],
     },
   },
