@@ -7,6 +7,6 @@ const adapter = new JSONFile(file);
 const db = new Low(adapter, {});
 
 export default async (path: string, defaultValue: unknown = null) => {
-  await db.read();
-  return get(db.data, path, defaultValue);
+	await db.read();
+	return get(db.data, path, defaultValue);
 };
