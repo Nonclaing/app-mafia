@@ -2,14 +2,14 @@
 import getDetail from "~/api/services/default/get";
 
 watchEffect(() => {
-	getDetail("1");
+  getDetail("1");
 });
 </script>
 
 <template>
-	<div>
-		<UiCard />
-	</div>
+  <div>
+    <UiCard />
+  </div>
 </template>
 
 <style module>
