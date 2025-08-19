@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { resolve } from "pathe";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
@@ -18,7 +19,7 @@ export default defineNuxtConfig({
       cssLayer: "base",
     }],
     ["@nuxtjs/i18n", {
-      defaultLocale: "ru",
+      vueI18n: resolve("./i18n.config.ts"),
     }],
     ["@pinia/nuxt", {
       storesDirs: ["./app/stores/**"],
