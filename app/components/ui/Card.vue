@@ -1,16 +1,5 @@
 <script setup lang="ts">
-const { t } = useI18n({
-  messages: {
-    ru: {
-      root: {
-        text: "Тестовый компонент карточки",
-      },
-      form: {
-        submit: "Отправить",
-      },
-    },
-  },
-});
+const { t } = useI18n();
 const store = useDefaultStore();
 const values = computed(() => store.values);
 const onChange = (e: Event) => {

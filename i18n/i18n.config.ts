@@ -1,6 +1,4 @@
 export default {
-  legacy: false,
-  locale: "ru",
   pluralRules: {
     ru: (choice: number, choicesLength: number) => {
       if (choice === 0) return 0;
@@ -14,20 +12,13 @@ export default {
   },
   numberFormats: {
     ru: {
-      currency: {
-        style: "currency", currency: "RUB",
-      },
-      int: {
-        style: "decimal", maximumFractionDigits: 0, minimumFractionDigits: 0, useGrouping: true,
-      },
-      decimal: {
-        style: "decimal", maximumFractionDigits: 2, minimumFractionDigits: 2, useGrouping: true,
-      },
+      currency: { style: "currency", currency: "RUB" },
+      decimal: { style: "decimal", maximumFractionDigits: 2, minimumFractionDigits: 0, useGrouping: true },
     },
   },
   datetimeFormats: {
     ru: {
-      short: { year: "numeric", month: "numeric", day: "numeric" },
+      short: { day: "numeric", month: "short", year: "numeric" },
       long: { year: "numeric", month: "long", day: "numeric", weekday: "long" },
     },
   },
