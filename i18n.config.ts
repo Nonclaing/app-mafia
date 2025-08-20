@@ -12,6 +12,19 @@ export default {
       return (choicesLength < 4) ? 2 : 3;
     },
   },
+  numberFormats: {
+    ru: {
+      currency: {
+        style: "currency", currency: "RUB",
+      },
+      int: {
+        style: "decimal", maximumFractionDigits: 0, minimumFractionDigits: 0, useGrouping: true,
+      },
+      decimal: {
+        style: "decimal", maximumFractionDigits: 2, minimumFractionDigits: 2, useGrouping: true,
+      },
+    },
+  },
   datetimeFormats: {
     ru: {
       short: { year: "numeric", month: "numeric", day: "numeric" },
