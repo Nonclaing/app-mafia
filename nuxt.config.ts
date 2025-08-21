@@ -31,6 +31,9 @@ export default defineNuxtConfig({
     ["@pinia/nuxt", {
       storesDirs: ["./app/stores/**"],
     }],
+    ["nuxt-headlessui", {
+      prefix: "Hl",
+    }],
     ["@vee-validate/nuxt", {
       autoImports: true,
       componentNames: {
