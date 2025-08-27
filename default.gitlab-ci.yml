@@ -26,7 +26,7 @@ deploy:egger-constructor:
     SSH_PORT: "2222"
     SSH_USER: "app-nuxt-skeleton"
     REMOTE_DOC_ROOT: "/home/bitrix" # Абсолютный путь на сервере до корня с сайтом
-    LOCAL_DIST_ROOT: ".output" # Относительный путь к папке с собранным фронтом (из артефактов)
+    LOCAL_DIST_ROOT: ".output/public" # Относительный путь к папке с собранным фронтом (из артефактов)
     REMOTE_DIST_PATH: "www" # Путь к папке куда нужно задеплоить собранный фронт (относительно REMOTE_DOC_ROOT)
   needs:
     - job: build:dist
