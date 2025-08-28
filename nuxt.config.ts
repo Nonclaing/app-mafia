@@ -5,6 +5,7 @@ const NUXT_API_BASE_URL = process.env.NUXT_API_BASE_URL || "http://localhost:300
 
 export default defineNuxtConfig({
   modules: [
+    "@nuxtjs/i18n",
     "@nuxtjs/device",
     "@vueuse/nuxt",
     "@nuxt/image",
@@ -23,16 +24,6 @@ export default defineNuxtConfig({
     ["@nuxt/icon", {
       mode: "css",
       cssLayer: "base",
-    }],
-    ["@nuxtjs/i18n", {
-      locale: "ru",
-      langDir: "locales/",
-      strategy: "prefix_except_default",
-      defaultLocale: "ru",
-      fallbackLocale: "ru",
-      locales: [
-        { code: "ru", name: "Русский", iso: "ru-RU", file: "ru.json" },
-      ],
     }],
     ["@pinia/nuxt", {
       storesDirs: ["./app/stores/**"],
@@ -119,6 +110,14 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       tailwindcss(),
+    ],
+  },
+  i18n: {
+    langDir: "locales/",
+    strategy: "prefix_except_default",
+    defaultLocale: "ru",
+    locales: [
+      { code: "ru", name: "Русский", iso: "ru-RU", file: "ru.json" },
     ],
   },
 });

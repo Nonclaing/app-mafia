@@ -1,4 +1,5 @@
 export default {
+  fallbackLocale: "ru",
   pluralRules: {
     ru: (choice: number, choicesLength: number) => {
       if (choice === 0) return 0;
