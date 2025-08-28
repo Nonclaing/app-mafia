@@ -1,6 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 
+const NUXT_API_BASE_URL = process.env.NUXT_API_BASE_URL || "http://localhost:3000";
+
 export default defineNuxtConfig({
   modules: [
     "@nuxtjs/device",
@@ -104,9 +106,9 @@ export default defineNuxtConfig({
     "~/assets/css/tailwind.css",
   ],
   runtimeConfig: {
-    apiBaseUrl: process.env.NUXT_API_BASE_URL || "http://localhost:3000", // серверный
+    apiBaseUrl: NUXT_API_BASE_URL, // серверный
     public: {
-      apiBaseUrl: process.env.NUXT_API_BASE_URL || "http://localhost:3000", // доступен и на клиенте
+      apiBaseUrl: NUXT_API_BASE_URL, // доступен и на клиенте
     },
   },
   routeRules: {},

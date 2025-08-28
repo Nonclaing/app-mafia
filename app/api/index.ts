@@ -7,9 +7,10 @@ const sessid = () => {
   return "N";
 };
 
-const client = createClient(createConfig({
-  baseURL: "http://localhost:3000",
-}));
+const config = useRuntimeConfig();
+const baseURL = config.public.apiBaseUrl as string;
+
+const client = createClient(createConfig({ baseURL }));
 
 client.instance.interceptors.request.use((config) => {
   config.params = { ...config.params, sessid: sessid() };
