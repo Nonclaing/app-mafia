@@ -12,7 +12,7 @@ stages:
 build:dist:
   extends: .dist_build # Наследуемся от шаблона для сборки
   variables:
-    BUILD_IMAGE: "node:22" # Можно поменять версию ноды
+    BUILD_IMAGE: "node:24" # Можно поменять версию ноды
     BUILD_COMMAND: "npm run generate"
     DIST_DIR: ".output/public"
   only:
