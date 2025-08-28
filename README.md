@@ -54,5 +54,8 @@ bun run preview
 Используй [release.sh](cli/release.sh) для обновления ветки master
 
 ## CI/CD
+### Для настройки CI
+- С SSR перенесите файлы из каталога [ssr](.ci/templates/ssr) в корень проекта
+- Без SSR перенесите файлы из [static](.ci/templates/static) в корень проекта
 
 Подробности смотрите в [документации по CI](https://gitlab.intervolga.ru/proj/devops/pipelines/-/blob/master/readme.md?ref_type=heads)

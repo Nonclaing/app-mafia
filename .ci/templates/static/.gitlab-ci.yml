@@ -19,7 +19,7 @@ build:dist:
     - master
 
 # Через двоеточие указываем название стенда на случай если их будет несколько
-deploy:egger-constructor:
+deploy:dev:
   extends: .dist_deploy_via_ansible # Наследуемся от шаблона для деплоя
   variables:
     SSH_HOST: "ivdev.ru"
@@ -32,7 +32,7 @@ deploy:egger-constructor:
     - job: build:dist
       artifacts: true
   environment:
-    name: app-nuxt-skeleton # Придумываем код для окружения
-    url: https://app-nuxt-skeleton.ivdev.ru/ # Указываем адрес
+    name: dev # Придумываем код для окружения
+    url: https://app-nuxt-skeleton.ivdev.ru # Указываем адрес
   only:
     - master
