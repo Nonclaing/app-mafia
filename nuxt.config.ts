@@ -11,7 +11,7 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@nuxt/test-utils/module",
     ["nuxt-schema-org", {
-      canonicalHost: "https://localhost:3000",
+      canonicalHost: "http://localhost:3000",
     }],
     ["@nuxt/fonts", {
       defaults: {

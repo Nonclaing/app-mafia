@@ -59,3 +59,10 @@ bun run preview
 - Без SSR перенесите файлы из [static](.ci/templates/static) в корень проекта
 
 Подробности смотрите в [документации по CI](https://gitlab.intervolga.ru/proj/devops/pipelines/-/blob/master/readme.md?ref_type=heads)
+
+
+## Переменные окружения
+
+```
+NUXT_API_BASE_URL={Абсолютный путь до точки входа api} по улолчанию http://localhost:3000
+```
