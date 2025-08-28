@@ -1,4 +1,4 @@
-import { type Item, getList, useApiClient } from "~/api";
+import { type Item, getList } from "~/api";
 
 export default async (): Promise<Item[]> => {
   const client = useApiClient();
