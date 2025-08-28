@@ -90,10 +90,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   app: {
     head: {
-      title: "Ищу дизайнера. 59300+ дизайнеров: портфолио и резюме",
+      title: "Стартер для проектов на nuxt 4",
       meta: [
-        { name: "description", content: "Ищу дизайнера — это проект, объединивший тысячи дизайнеров. Ищем дизайнеров для клиентов каждый день" },
-        { name: "keywords", content: "Ищу дизайнера, вакансии для дизайнеров, designers, дизайнеры работа, сайт дизайнеров, работа для дизайнеров, биржа дизайнеров" },
+        { name: "description", content: "Стартер для проектов на nuxt 4" },
+        { name: "keywords", content: "Стартер, nuxt 4, для проектов" },
       ],
       link: [
         { rel: "icon", type: "image/png", href: "/favicon.ico" },
