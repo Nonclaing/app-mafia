@@ -1,7 +1,11 @@
 <script setup lang="ts">
 useSchemaOrg([
-  // TODO: defineOrganization(),
-  // TODO:  defineWebSite(),
+  defineOrganization({
+    name: "Nuxt App SEO",
+  }),
+  defineWebSite({
+    name: "Nuxt App Schema.org",
+  }),
   defineWebPage(),
 ]);
 </script>
