@@ -50,6 +50,9 @@ bun run preview
 
 Подробности смотрите в [документации по деплою](https://nuxt.com/docs/getting-started/deployment).
 
+## Советы
+Используй [stoplightio](https://github.com/stoplightio/studio/releases/) для прототипирования api
+
 ## Релиз
 Используй [release.sh](cli/release.sh) для обновления ветки master
 
@@ -62,7 +65,6 @@ bun run preview
 
 
 ## Переменные окружения
-
 ```
 NUXT_API_BASE_URL={Абсолютный путь до точки входа api} по улолчанию http://localhost:3000
 ```
