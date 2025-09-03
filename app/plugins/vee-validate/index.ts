@@ -5,8 +5,8 @@ import { all } from "@vee-validate/rules";
 import * as custom from "~/plugins/vee-validate/rules";
 
 export default defineNuxtPlugin(() => {
-  Object.entries(all).forEach(([name, rule]) => defineRule(name, rule));
-  Object.entries(custom).forEach(([name, rule]) => defineRule(name, rule));
+  useForEach(toPairs(all), ([name, rule]) => defineRule(name, rule));
+  useForEach(toPairs(custom), ([name, rule]) => defineRule(name, rule));
 
   // Настраиваем vee-validate
   configure({

@@ -74,6 +74,7 @@ export default defineNuxtConfig({
       { from: "es-toolkit/compat", name: "compact", as: "useCompact" },
       { from: "es-toolkit/compat", name: "castArray", as: "useCastArray" },
       { from: "es-toolkit/compat", name: "join", as: "useJoin" },
+      { from: "es-toolkit/compat", name: "toPairs" },
       { from: "es-toolkit/compat", name: "isArray" },
       { from: "es-toolkit/compat", name: "isEmpty" },
       { from: "es-toolkit/compat", name: "isEqual" },
