@@ -39,8 +39,32 @@ paths:
         '404':
           description: Item not found
 
+  /rest/auth/profile:
+    get:
+      summary: Get auth profile
+      operationId: getAuthProfile
+      responses:
+        '200':
+          description: Authenticated user profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+        '404':
+          description: Profile not found
+
+
 components:
   schemas:
+    Profile:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        role:
+          type: string
+          example: "admin"
     Item:
       type: object
       properties:

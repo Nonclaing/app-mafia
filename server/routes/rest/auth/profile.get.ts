@@ -1,5 +1,5 @@
 export default defineEventHandler(async () => {
-  const items = await getFromData("items", []);
-  if (items) return items;
+  const user = { id: 1, role: "admin" };
+  if (user) return user;
   throw createError({ statusCode: 404, statusMessage: "Элемент не найден" });
 });

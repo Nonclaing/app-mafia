@@ -1,0 +1,38 @@
+include:
+  - project: proj/devops/pipelines
+    file:
+      - front/vue3/dist-build-template.yml
+      - front/deploy/dist-deploy-via-ansible-template.yml
+      - back/deploy/bitrix-deploy-via-ansible-template.yml
+
+stages:
+  - build
+  - deploy
+
+build:dist:
+  extends: .dist_build # Наследуемся от шаблона для сборки
+  variables:
+    BUILD_IMAGE: "node:24" # Можно поменять версию ноды
+    BUILD_COMMAND: "npm run generate"
+    DIST_DIR: ".output/public"
+  only:
+    - master
+
+# Через двоеточие указываем название стенда на случай если их будет несколько
+deploy:dev:
+  extends: .dist_deploy_via_ansible # Наследуемся от шаблона для деплоя
+  variables:
+    SSH_HOST: "ivdev.ru"
+    SSH_PORT: "2222"
+    SSH_USER: "app-nuxt-skeleton"
+    REMOTE_DOC_ROOT: "/home/bitrix" # Абсолютный путь на сервере до корня с сайтом
+    LOCAL_DIST_ROOT: ".output/public" # Относительный путь к папке с собранным фронтом (из артефактов)
+    REMOTE_DIST_PATH: "www" # Путь к папке куда нужно задеплоить собранный фронт (относительно REMOTE_DOC_ROOT)
+  needs:
+    - job: build:dist
+      artifacts: true
+  environment:
+    name: dev # Придумываем код для окружения
+    url: https://app-nuxt-skeleton.ivdev.ru # Указываем адрес
+  only:
+    - master

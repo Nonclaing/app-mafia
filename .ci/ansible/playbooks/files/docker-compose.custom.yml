@@ -1,0 +1,28 @@
+services:
+  front:
+    container_name: ${SITE_HOST}_front
+    image: ${FRONT_IMAGE_TAG}
+    restart: on-failure
+    networks:
+      - main_proxy_ivdev_network
+      - default
+    depends_on:
+      - backend
+    environment:
+      - PORT=3000
+      - HOST=0.0.0.0
+      - NODE_ENV=production
+      - NUXT_API_BASE_URL="https://${SITE_HOST}.${MAIN_DOMAIN}"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.front-${SITE_HOST}.rule=Host(`${SITE_HOST}.${MAIN_DOMAIN}`) && (Path(`/`) || PathPrefix(`/_nuxt/`) || PathPrefix(`/_fonts/`) || PathPrefix(`/_i18n/`) || PathPrefix(`/_ipx/`))"
+      - "traefik.http.routers.front-${SITE_HOST}.entrypoints=web,websecure"
+      - "traefik.http.routers.front-${SITE_HOST}.tls=true"
+      - "traefik.http.routers.front-${SITE_HOST}.tls.certresolver=mainresolver"
+      - "traefik.http.routers.front-${SITE_HOST}.middlewares=fixHeaders,corsHeaders,fixBuffering"
+      - "traefik.http.services.front-${SITE_HOST}.loadbalancer.server.port=3000"
+      - "traefik.http.routers.front-${SITE_HOST}.priority=2"
+
+  nginx:
+    labels:
+      - "traefik.http.routers.nginx-${SITE_HOST}.priority=1"

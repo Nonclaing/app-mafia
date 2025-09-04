@@ -1,75 +1,70 @@
-# Nuxt Minimal Starter
+# Стартовый проект Nuxt.js
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Ознакомьтесь с [документацией Nuxt](https://nuxt.com/docs/getting-started/introduction), чтобы узнать больше.
 
-## Setup
+## Установка
 
-Make sure to install dependencies:
+Убедитесь, что установили зависимости:
 
 ```bash
 # npm
 npm install
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
 # bun
 bun install
 ```
 
-## Development Server
+## Сервер разработки
 
-Start the development server on `http://localhost:3000`:
+Запустите сервер разработки по адресу `http://localhost:3000`:
 
 ```bash
 # npm
 npm run dev
 
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
 # bun
 bun run dev
 ```
 
-## Production
+## Продакшн
 
-Build the application for production:
+Соберите приложение для продакшна:
 
 ```bash
 # npm
 npm run build
 
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
 # bun
 bun run build
 ```
 
-Locally preview production build:
+Локально просмотрите продакшн-сборку:
 
 ```bash
 # npm
 npm run preview
 
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
 # bun
 bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Подробности смотрите в [документации по деплою](https://nuxt.com/docs/getting-started/deployment).
+
+## Советы
+Используй [stoplightio](https://github.com/stoplightio/studio/releases/) для прототипирования api
+
+## Релиз
+Используй [release.sh](cli/release.sh) для обновления ветки master
+
+## CI/CD
+### Для настройки CI
+- С SSR перенесите файлы из каталога [ssr](.ci/templates/ssr) в корень проекта
+- Без SSR перенесите файлы из [static](.ci/templates/static) в корень проекта
+
+Подробности смотрите в [документации по CI](https://gitlab.intervolga.ru/proj/devops/pipelines/-/blob/master/readme.md?ref_type=heads)
+
+
+## Переменные окружения
+```
+NUXT_API_BASE_URL={Абсолютный путь до точки входа api} по улолчанию http://localhost:3000
+```
