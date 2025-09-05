@@ -3,7 +3,7 @@ import getDetail from "~/api/services/item/get";
 
 const { t } = useI18n();
 const { can } = useAbility();
-const { data } = await useAsyncData("item", () => getDetail("1"));
+const { data } = await useAsyncData("item", () => getDetail("123"));
 
 useHead({
   title: t("pages.root.title"),
