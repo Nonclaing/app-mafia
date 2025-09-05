@@ -1,6 +1,6 @@
 import { writeFile } from "fs/promises";
 import { map, range } from "es-toolkit/compat";
-import { fakerRU } from '@faker-js/faker';
+import { fakerRU } from "@faker-js/faker";
 
 const data = {
   items: map(range(10), (id) => ({
