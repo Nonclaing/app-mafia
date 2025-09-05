@@ -1,12 +1,12 @@
 {
   "name": "nuxt-app",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --dotenv .env.development",
-    "dev:init": "node scripts/init-dev-db.js",
+    "dev:init": "node .dev/init.mjs",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "lint": "eslint .",
@@ -16,11 +16,12 @@
     "update": "npx npm-check-updates -u && npm i",
     "test": "vitest run",
     "test:ci": "vitest run --bail=1 --reporter=dot",
-    "start": "pm2 start scripts/ecosystem.config.cjs"
+    "start": "pm2 start .ci/pm2/config.cjs"
   },
   "devDependencies": {
     "@casl/ability": "^6.7.3",
     "@casl/vue": "^2.2.2",
+    "@faker-js/faker": "^10.0.0",
     "@hey-api/client-axios": "^0.9.1",
     "@hey-api/openapi-ts": "^0.82.3",
     "@iconify-json/mdi": "^1.2.3",
