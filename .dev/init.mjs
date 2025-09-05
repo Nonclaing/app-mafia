@@ -1,4 +1,4 @@
-import { writeFile, mkdir } from "fs/promises";
+import { writeFile } from "fs/promises";
 
 const data = {
   items: {
@@ -15,9 +15,4 @@ const data = {
   },
 };
 
-const init = async () => {
-  await mkdir(".dev", { recursive: true });
-  await writeFile(".dev/db.json", JSON.stringify(data, null, 2));
-};
-
-init();
+await writeFile(".dev/db.json", JSON.stringify(data, null, 2));

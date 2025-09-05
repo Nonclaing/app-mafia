@@ -6,7 +6,7 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --dotenv .env.development",
-    "dev:init": "node scripts/init-dev-db.js",
+    "dev:init": "node .dev/init.mjs",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "lint": "eslint .",
