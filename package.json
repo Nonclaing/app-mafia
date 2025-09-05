@@ -16,7 +16,7 @@
     "update": "npx npm-check-updates -u && npm i",
     "test": "vitest run",
     "test:ci": "vitest run --bail=1 --reporter=dot",
-    "start": "pm2 start scripts/ecosystem.config.cjs"
+    "start": "pm2 start .ci/pm2/config.cjs"
   },
   "devDependencies": {
     "@casl/ability": "^6.7.3",
