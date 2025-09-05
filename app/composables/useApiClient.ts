@@ -1,4 +1,4 @@
-import { createConfig, createClient } from "~~/.api/client";
+import { createConfig, createClient } from "~/api/client";
 
 let _client: ReturnType<typeof createClient> | null = null;
 export default () => {
