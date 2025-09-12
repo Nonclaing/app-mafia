@@ -6,12 +6,19 @@ const NUXT_API_BASE_URL = process.env.NUXT_API_BASE_URL || HOST;
 
 export default defineNuxtConfig({
   modules: [
-    "@nuxtjs/i18n",
     "@nuxtjs/device",
     "@vueuse/nuxt",
     "@nuxt/image",
     "@nuxt/eslint",
     "@nuxt/test-utils/module",
+    ["@nuxtjs/i18n", {
+      langDir: "locales/",
+      strategy: "prefix_except_default",
+      defaultLocale: "ru",
+      locales: [
+        { code: "ru", name: "Русский", iso: "ru-RU", file: "ru.json" },
+      ],
+    }],
     ["nuxt-es-toolkit-module", {
       prefix: "use",
       exclude: "^is|to",
@@ -78,14 +85,6 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       tailwindcss(),
-    ],
-  },
-  i18n: {
-    langDir: "locales/",
-    strategy: "prefix_except_default",
-    defaultLocale: "ru",
-    locales: [
-      { code: "ru", name: "Русский", iso: "ru-RU", file: "ru.json" },
     ],
   },
 });
