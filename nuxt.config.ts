@@ -79,6 +79,11 @@ export default defineNuxtConfig({
   },
   routeRules: {},
   compatibilityDate: "2025-07-15",
+  nitro: {
+    devProxy: {
+      "/rest/proxy": { target: NUXT_HOST, changeOrigin: true },
+    },
+  },
   vite: {
     plugins: [
       tailwindcss(),
