@@ -12,7 +12,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "openapi": "openapi-ts",
-    "postinstall": "nuxt prepare && npm run dev:init && npm run openapi",
+    "postinstall": "npm run openapi && npm run  && dev:init nuxt prepare",
     "update": "npx npm-check-updates -u && npm i",
     "test": "vitest run",
     "test:ci": "vitest run --bail=1 --reporter=dot",
