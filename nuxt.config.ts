@@ -1,8 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 
-const HOST = process.env.NUXT_HOST || "http://localhost:3000";
-const NUXT_API_BASE_URL = process.env.NUXT_API_BASE_URL || HOST;
+const NUXT_HOST = process.env.NUXT_HOST || "http://localhost:3000";
+const NUXT_API_BASE_URL = process.env.NUXT_API_BASE_URL || NUXT_HOST;
 
 export default defineNuxtConfig({
   modules: [
@@ -25,7 +25,7 @@ export default defineNuxtConfig({
       names: ["get", "map", "forEach", "size", "toPairs", "isEmpty"],
     }],
     ["nuxt-schema-org", {
-      canonicalHost: HOST,
+      canonicalHost: NUXT_HOST,
     }],
     ["@nuxt/fonts", {
       defaults: {
