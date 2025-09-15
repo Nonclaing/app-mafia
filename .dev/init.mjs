@@ -1,5 +1,5 @@
 import { writeFile, readFile, mkdir, access, constants } from "fs/promises";
-import { map, range, keys, mapValues, get, keyBy } from "es-toolkit/compat";
+import { map, range, keys, mapValues, get, uniqueId, mapKeys } from "es-toolkit/compat";
 import { load } from "js-yaml";
 
 const openapi = load(await readFile("app/api/openapi.yml", "utf-8"));
@@ -23,9 +23,7 @@ for (const path in openapi.paths) {
 const db = {};
 for (const name in openapi.components.schemas) {
   const entry = openapi.components.schemas[name];
-  db[name] = keyBy(map(range(1), () => mapValues(get(entry, "properties"), (prop, key) => {
-    return get(prop, "example", key);
-  })), "id");
+  db[name] = mapKeys(map(range(1), () => mapValues(get(entry, "properties"), (prop, key) => get(prop, "example", get(prop, "description", key)))), () => uniqueId());
 }
 
 try {
