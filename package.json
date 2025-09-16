@@ -22,6 +22,7 @@
     "@casl/ability": "^6.7.3",
     "@casl/vue": "^2.2.2",
     "@faker-js/faker": "^10.0.0",
+    "@floating-ui/vue": "^1.1.9",
     "@hey-api/client-axios": "^0.9.1",
     "@hey-api/openapi-ts": "^0.83.1",
     "@iconify-json/mdi": "^1.2.3",
