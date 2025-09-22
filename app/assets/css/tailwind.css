@@ -1,14 +1,12 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
 @plugin "daisyui" {
-    themes: light;
+    themes: light --default;
 }
-@plugin "daisyui/theme" {
-    name: light;
-    default: true;
-    --color-primary: #e31937;
-}
-@theme {
+
+@theme light {
     --font-sans: Roboto, sans-serif;
     --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    --color-primary: #e31937;
 }
