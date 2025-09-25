@@ -4,9 +4,9 @@ export default defineConfig({
   input: "./app/api/openapi.yml",
   output: "./app/api/.api",
   plugins: [
-    "zod",
-    "@tanstack/vue-query",
-    { name: "@hey-api/client-nuxt", runtimeConfigPath: "./../config" },
+    { name: "zod" },
+    { name: "@tanstack/vue-query" },
     { name: "@hey-api/sdk", validator: true },
+    { name: "@hey-api/client-axios", runtimeConfigPath: "./../config" },
   ],
 });

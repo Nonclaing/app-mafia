@@ -31,7 +31,6 @@
     "@nuxt/eslint": "^1.9.0",
     "@nuxt/fonts": "^0.11.4",
     "@nuxt/icon": "^2.0.0",
-    "@hey-api/nuxt": "^0.2.1",
     "@nuxt/image": "^1.11.0",
     "@nuxt/test-utils": "^3.19.2",
     "@nuxtjs/device": "^3.2.4",
