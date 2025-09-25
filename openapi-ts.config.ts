@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [
     "zod",
     "@tanstack/vue-query",
-    { name: "@hey-api/client-nuxt", runtimeConfigPath: "./../app/api/config.ts" },
+    { name: "@hey-api/client-nuxt", runtimeConfigPath: "./../config" },
     { name: "@hey-api/sdk", validator: true },
   ],
 });
