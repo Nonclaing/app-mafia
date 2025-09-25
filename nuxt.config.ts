@@ -2,7 +2,6 @@
 import tailwindcss from "@tailwindcss/vite";
 
 const NUXT_HOST = process.env.NUXT_HOST || "http://localhost:3000";
-const NUXT_API_BASE_URL = process.env.NUXT_API_BASE_URL || NUXT_HOST;
 
 export default defineNuxtConfig({
   modules: [
@@ -84,10 +83,7 @@ export default defineNuxtConfig({
     "~/assets/css/tailwind.css",
   ],
   runtimeConfig: {
-    apiBaseUrl: NUXT_API_BASE_URL, // серверный
-    public: {
-      apiBaseUrl: NUXT_API_BASE_URL, // доступен и на клиенте
-    },
+    public: {},
   },
   routeRules: {},
   compatibilityDate: "2025-07-15",
