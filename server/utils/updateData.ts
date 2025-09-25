@@ -8,6 +8,6 @@ const db = new Low(adapter, {});
 
 export default async (path: string | string[], value: string) => {
   await db.read();
-  set(db.data, path, value);
+  set(db.data!, path, value);
   await db.write();
 };
