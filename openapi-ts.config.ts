@@ -5,6 +5,7 @@ export default defineConfig({
   output: "./app/api/.api",
   plugins: [
     "zod",
+    "@tanstack/vue-query",
     "@hey-api/client-axios",
     { name: "@hey-api/sdk", validator: true },
   ],

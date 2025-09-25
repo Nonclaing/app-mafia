@@ -24,6 +24,18 @@ export default defineNuxtConfig({
       exclude: "^is|to",
       names: ["get", "map", "forEach", "size", "toPairs", "isEmpty"],
     }],
+    ["@peterbud/nuxt-query", {
+      devtools: true,
+      autoImports: ["useQuery", "useMutation"],
+      queryClientOptions: {
+        defaultOptions: {
+          queries: {
+            refetchInterval: 5000,
+            refetchOnWindowFocus: false,
+          },
+        },
+      },
+    }],
     ["nuxt-schema-org", {
       canonicalHost: NUXT_HOST,
     }],
