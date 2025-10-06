@@ -1,8 +1,8 @@
-import { type Profile, getAuthProfile } from "~/api";
+import { getAuthProfile } from "~/api";
 
-export default async (): Promise<Profile> => {
-  const client = useApiClient();
-  const { data } = await getAuthProfile({ client });
+export default async () => {
+  const response = await getAuthProfile();
+  const data = useGet(response, "data");
   if (!data) throw new Error("Item not found");
   return data;
 };

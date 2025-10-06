@@ -1,24 +1,42 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 
-const HOST = process.env.NUXT_HOST || "http://localhost:3000";
-const NUXT_API_BASE_URL = process.env.NUXT_API_BASE_URL || HOST;
+const NUXT_HOST = process.env.NUXT_HOST || "http://localhost:3000";
 
 export default defineNuxtConfig({
   modules: [
-    "@nuxtjs/i18n",
     "@nuxtjs/device",
     "@vueuse/nuxt",
     "@nuxt/image",
     "@nuxt/eslint",
     "@nuxt/test-utils/module",
+    ["@nuxtjs/i18n", {
+      langDir: "locales/",
+      strategy: "prefix_except_default",
+      defaultLocale: "ru",
+      locales: [
+        { code: "ru", name: "Русский", iso: "ru-RU", file: "ru.json" },
+      ],
+    }],
     ["nuxt-es-toolkit-module", {
       prefix: "use",
       exclude: "^is|to",
       names: ["get", "map", "forEach", "size", "toPairs", "isEmpty"],
     }],
+    ["@peterbud/nuxt-query", {
+      devtools: true,
+      autoImports: ["useQuery", "useMutation"],
+      queryClientOptions: {
+        defaultOptions: {
+          queries: {
+            refetchInterval: 5000,
+            refetchOnWindowFocus: false,
+          },
+        },
+      },
+    }],
     ["nuxt-schema-org", {
-      canonicalHost: HOST,
+      canonicalHost: NUXT_HOST,
     }],
     ["@nuxt/fonts", {
       defaults: {
@@ -65,27 +83,18 @@ export default defineNuxtConfig({
     "~/assets/css/tailwind.css",
   ],
   runtimeConfig: {
-    apiBaseUrl: NUXT_API_BASE_URL, // серверный
-    public: {
-      apiBaseUrl: NUXT_API_BASE_URL, // доступен и на клиенте
-    },
+    public: {},
   },
   routeRules: {},
-  devServer: {
-    host: "0.0.0.0",
-  },
   compatibilityDate: "2025-07-15",
+  nitro: {
+    devProxy: {
+      "/rest/proxy": { target: NUXT_HOST, changeOrigin: true },
+    },
+  },
   vite: {
     plugins: [
       tailwindcss(),
-    ],
-  },
-  i18n: {
-    langDir: "locales/",
-    strategy: "prefix_except_default",
-    defaultLocale: "ru",
-    locales: [
-      { code: "ru", name: "Русский", iso: "ru-RU", file: "ru.json" },
     ],
   },
 });

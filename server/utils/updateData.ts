@@ -1,12 +1,13 @@
 import { JSONFile } from "lowdb/node";
 import { Low } from "lowdb";
-import { get } from "es-toolkit/compat";
+import { set } from "es-toolkit/compat";
 
 const file = ".dev/db.json";
 const adapter = new JSONFile(file);
 const db = new Low(adapter, {});
 
-export default async (path: string | string[], defaultValue: unknown = null) => {
+export default async (path: string | string[], value: string) => {
   await db.read();
-  return get(db.data, path, defaultValue);
+  set(db.data!, path, value);
+  await db.write();
 };

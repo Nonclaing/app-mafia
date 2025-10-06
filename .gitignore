@@ -21,6 +21,5 @@ logs
 .dev/db.json
 
 # Local env files
-.env
 .env.*
 !.env.example
