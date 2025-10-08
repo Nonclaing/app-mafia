@@ -3,6 +3,9 @@
   "version": "1.0.10",
   "private": true,
   "type": "module",
+  "bin": {
+    "create": "./bin/create.js"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --dotenv .env.development",
