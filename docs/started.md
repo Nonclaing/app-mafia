@@ -3,5 +3,6 @@
 ## Клонируем репозиторий в новый каталог
 
 ```
-npx gitlab:proj/frontend/boilerplates/app.nuxt.skeleton -- my-app
+npx git@gitlab.intervolga.ru:proj/frontend/boilerplates/app.nuxt.skeleton.git -- my-app
 ```
+

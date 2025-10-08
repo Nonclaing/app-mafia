@@ -1,11 +1,8 @@
 {
   "name": "nuxt-app",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "private": true,
   "type": "module",
-  "bin": {
-    "create-app": "./bin/index.js"
-  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --dotenv .env.development",
