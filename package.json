@@ -3,9 +3,6 @@
   "version": "1.0.9",
   "private": true,
   "type": "module",
-  "bin": {
-    "create-app": "./bin/index.js"
-  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --dotenv .env.development",
