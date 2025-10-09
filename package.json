@@ -12,13 +12,13 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "openapi": "openapi-ts",
-    "postinstall": "nuxt prepare && npm run openapi && npm run dev:init",
     "update": "npx npm-check-updates -u && npm i",
     "test": "vitest run",
     "test:ci": "vitest run --bail=1 --reporter=dot",
     "start": "pm2 start .ci/pm2/config.cjs",
     "release": "bush cli/release",
-    "type-check": "npm run build && vue-tsc --noEmit -p ./.nuxt/tsconfig.json"
+    "type-check": "npm run build && vue-tsc --noEmit -p ./.nuxt/tsconfig.json",
+    "setup": "npm i && npm run openapi && npm run dev:init"
   },
   "devDependencies": {
     "@casl/ability": "^6.7.3",
