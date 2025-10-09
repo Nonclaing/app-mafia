@@ -1,24 +1,24 @@
 {
   "name": "nuxt-app",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --dotenv .env.development",
+    "dev": "nuxt dev --dotenv .env.development --host",
     "dev:init": "node .dev/init.mjs",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "openapi": "openapi-ts",
-    "postinstall": "nuxt prepare && npm run openapi && npm run dev:init",
     "update": "npx npm-check-updates -u && npm i",
     "test": "vitest run",
     "test:ci": "vitest run --bail=1 --reporter=dot",
     "start": "pm2 start .ci/pm2/config.cjs",
     "release": "bush cli/release",
-    "type-check": "npm run build && vue-tsc --noEmit -p ./.nuxt/tsconfig.json"
+    "type-check": "npm run build && vue-tsc --noEmit -p ./.nuxt/tsconfig.json",
+    "setup": "npm i && npm run openapi && npm run dev:init"
   },
   "devDependencies": {
     "@casl/ability": "^6.7.3",
@@ -26,7 +26,7 @@
     "@faker-js/faker": "^10.0.0",
     "@floating-ui/vue": "^1.1.9",
     "@hey-api/client-axios": "^0.9.1",
-    "@hey-api/openapi-ts": "^0.85.0",
+    "@hey-api/openapi-ts": "^0.85.1",
     "@iconify-json/mdi": "^1.2.3",
     "@nuxt/eslint": "^1.9.0",
     "@nuxt/fonts": "^0.11.4",

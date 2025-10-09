@@ -1,6 +1,6 @@
 import type { CreateClientConfig } from "./.api/client";
 
 export const createClientConfig: CreateClientConfig = (options) => {
-  if (import.meta.env.DEV) return { ...options, baseURL: "http://localhost:3000" };
+  if (process.env.NUXT_PUBLIC_API_URL) return { ...options, baseURL: process.env.NUXT_PUBLIC_API_URL };
   return { ...options };
 };

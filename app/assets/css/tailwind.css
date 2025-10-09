@@ -3,6 +3,7 @@
 
 @plugin "daisyui" {
     themes: custom --default;
+    exclude: properties;
 }
 
 @theme custom {
