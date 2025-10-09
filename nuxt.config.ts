@@ -5,11 +5,11 @@ const NUXT_HOST = process.env.NUXT_HOST || "http://localhost:3000";
 
 export default defineNuxtConfig({
   modules: [
-    "@nuxtjs/device",
-    "@vueuse/nuxt",
-    "@nuxt/image",
-    "@nuxt/eslint",
-    "@nuxt/test-utils/module",
+    ["@nuxtjs/device", {}],
+    ["@vueuse/nuxt", {}],
+    ["@nuxt/image", {}],
+    ["@nuxt/eslint", {}],
+    ["@nuxt/test-utils/module", {}],
     ["@nuxtjs/i18n", {
       langDir: "locales/",
       strategy: "prefix_except_default",
@@ -86,7 +86,6 @@ export default defineNuxtConfig({
     public: {},
   },
   routeRules: {},
-  compatibilityDate: "2025-07-15",
   nitro: {
     devProxy: {
       "/rest/proxy": { target: NUXT_HOST, changeOrigin: true },

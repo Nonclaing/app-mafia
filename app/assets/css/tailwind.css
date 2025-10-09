@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 @plugin "daisyui" {
-    themes: custom --default;
+    themes: custom;
 }
 
 @theme custom {
