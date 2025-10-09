@@ -8,7 +8,7 @@ const tpl = await readFile(".dev/tpl/route.tpl.ts", "utf-8");
 for (const path in openapi.paths) {
   const methods = keys(openapi.paths[path]);
   for (const method of methods) {
-    const route = `server/routes/rest/${path}`;
+    const route = `server/routes/${path}`;
     const dir = route.replace("{", "[").replace("}", "]").replace(".[format]", "");
     const file = `${dir}/index.${method}.ts`;
     await mkdir(dir, { recursive: true });

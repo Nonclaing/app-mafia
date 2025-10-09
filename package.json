@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --dotenv .env.development",
+    "dev": "nuxt dev --dotenv .env.development --host",
     "dev:init": "node .dev/init.mjs",
     "generate": "nuxt generate",
     "preview": "nuxt preview",

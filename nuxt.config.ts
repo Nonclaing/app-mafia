@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 
-const NUXT_HOST = process.env.NUXT_HOST || "http://localhost:3000";
+const NUXT_PUBLIC_API_URL = process.env.NUXT_PUBLIC_API_URL;
 
 export default defineNuxtConfig({
   modules: [
@@ -35,9 +35,7 @@ export default defineNuxtConfig({
         },
       },
     }],
-    ["nuxt-schema-org", {
-      canonicalHost: NUXT_HOST,
-    }],
+    ["nuxt-schema-org", {}],
     ["@nuxt/fonts", {
       defaults: {
         weights: ["100 900"],
@@ -65,15 +63,19 @@ export default defineNuxtConfig({
       },
     }],
   ],
+  plugins: [
+    "~/ability/plugins/abilities/index.ts",
+    "~/api/plugins/bitrix-sessid/index.client.ts",
+  ],
   ssr: true,
+  imports: {
+    imports: [
+      { from: "@casl/vue", name: "useAbility" },
+    ],
+  },
   devtools: { enabled: true },
   app: {
     head: {
-      title: "Стартер для проектов на nuxt 4",
-      meta: [
-        { name: "description", content: "Стартер для проектов на nuxt 4" },
-        { name: "keywords", content: "Стартер, nuxt 4, для проектов" },
-      ],
       link: [
         { rel: "icon", type: "image/png", href: "/favicon.ico" },
       ],
@@ -86,9 +88,10 @@ export default defineNuxtConfig({
     public: {},
   },
   routeRules: {},
+  compatibilityDate: "2025-10-09",
   nitro: {
     devProxy: {
-      "/rest/proxy": { target: NUXT_HOST, changeOrigin: true },
+      "/rest/other": { target: `${NUXT_PUBLIC_API_URL}/rest/other`, changeOrigin: true },
     },
   },
   vite: {
