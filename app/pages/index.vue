@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { t } = useI18n();
 const game = useGameStore();
 const night = useNightStore();
 const players = computed(() => game.players);
@@ -16,7 +17,7 @@ const onStart = () => {
   <div>
     <section class="mb-10">
       <h2 class="text-xl font-bold mb-8">
-        Игроки
+        {{ t('players') }}
       </h2>
       <div class="flex flex-col">
         <SetPlayers />
@@ -24,14 +25,14 @@ const onStart = () => {
     </section>
     <section class="mb-10">
       <h2 class="text-xl font-bold mb-8">
-        Роли
+        {{ t('roles') }}
       </h2>
       <div class="flex flex-col">
         <SelectRoles />
       </div>
     </section>
     <button class="btn btn-primary uppercase mt-4 w-full" :disabled="useSize(players) !== allRolesCount || !useSize(players)" @click="onStart">
-      Начать игру
+      {{ t('startGame') }}
     </button>
   </div>
 </template>

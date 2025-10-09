@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { size } from "es-toolkit/compat";
 
+const { t } = useI18n();
 const game = useGameStore();
 const players = computed(() => game.players);
 
@@ -27,22 +28,22 @@ const showAdd = () => {
   </div>
   <div class="grid grid-cols-2 gap-4 items-center mt-4">
     <div class="text-lg">
-      Всего игроков: {{ size(players) }}
+      {{ t('totalPlayers', 5) }} {{ size(players) }}
     </div>
     <button class="btn btn-primary self-end" @click="showAdd">
-      Добавить игрока
+      {{ t('components.SetPlayers.add') }}
     </button>
-    <UiDialog v-model="dialog" title="Добавить игрока">
+    <UiDialog v-model="dialog" :title="t('components.SetPlayers.add')">
       <div>
         <div class="grid items-center grid-cols-[1fr_auto]">
           <label class="input w-full">
-            Имя
+            {{ t('name') }}
             <input ref="input" :value="name" @input="(event) => name = (event.target as HTMLInputElement).value">
           </label>
         </div>
       </div>
       <button class="btn btn-primary mt-2 w-full" :disabled="!name" @click="onAdd">
-        Добавить
+        {{ t('add') }}
       </button>
     </UiDialog>
   </div>

@@ -6,7 +6,7 @@ export const ROUTES = {
     day: "/game/day",
     dayDiscussion: "/game/day/discussion",
     dayVoting: "/game/day/voting",
-    dayVotingResult: "/game/day/votingResult",
+    dayVotingResult: "/game/day/voting-result",
     master: "/game/master",
   },
 };

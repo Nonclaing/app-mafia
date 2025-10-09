@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { compact, get, groupBy, join, keys, map, max } from "es-toolkit/compat";
-import { usePlural } from "~/composables/usePlural";
 
+const { t } = useI18n();
 const day = useDayStore();
 const resultVotes = computed(() => {
   const idArray = groupBy(day.players, ({ completedActions }) => get(completedActions, "vote.id", ""));
@@ -39,7 +39,7 @@ const kickedPlayer = computed(() => {
           {{ fullName }} -
         </span>
         <span class="font-bold">
-          <span class="text-lg text-primary">{{ count }}</span> {{ usePlural(count, ['голос', 'голоса', 'голосов']) }}:
+          <!--          <span class="text-lg text-primary">{{ count }}</span> {{ pluralRules(count, ['голос', 'голоса', 'голосов']) }}: -->
         </span>
         <span>{{ list }}</span>
       </div>

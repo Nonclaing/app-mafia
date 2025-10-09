@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { t } = useI18n();
 const game = useGameStore();
 const roles = computed(() => game.roles);
 </script>
@@ -16,7 +17,7 @@ const roles = computed(() => game.roles);
       />
     </div>
     <div class="mt-4 text-lg">
-      Всего ролей: {{ game.allRolesCount }}
+      {{ t('totalRoles', 5) }} {{ game.allRolesCount }}
     </div>
   </div>
 </template>

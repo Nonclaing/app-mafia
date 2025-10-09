@@ -9,6 +9,7 @@ const props = defineProps<{
   fullName: string;
 }>();
 
+const { t } = useI18n();
 const nameRef = toRef<string>(props.name);
 const dialogChange = ref<boolean>(false);
 const dialogDelete = ref<boolean>(false);
@@ -27,7 +28,6 @@ const onEdit = () => {
 
 const onDelete = () => {
   emit("delete");
-  dialogDelete.value = false;
 };
 </script>
 
@@ -36,37 +36,39 @@ const onDelete = () => {
     <button class="text-primary absolute p-2 top-0 left-0" @click="showChange">
       <Icon name="mdi:pencil" size="24" />
     </button>
-    <button class="text-primary absolute p-2 top-0 right-0" @click="dialogDelete = true">
-      <Icon name="mdi:trash" size="24" />
-    </button>
+    <UiButtonConfirmation class="mt-auto" :title="t('components.Player.delete')" @success="onDelete">
+      <button class="text-primary absolute p-2 top-0 right-0">
+        <Icon name="mdi:trash" size="24" />
+      </button>
+    </UiButtonConfirmation>
     <img class="w-[120px] h-[120px] object-contain" src="/images/mafia.png">
     <div class="p-2">
       <h2 class="font-bold break-words">
         {{ fullName }}
       </h2>
     </div>
-    <UiDialog v-model="dialogChange" title="Изменить имя">
+    <UiDialog v-model="dialogChange" :title="t('changeName')">
       <div>
         <div class="grid grid-cols-[1fr_auto]">
           <label class="input w-full">
-            Имя
-            <input ref="input" :value="nameRef" @input="(event) => nameRef = (event.target as HTMLElement).value">
+            {{ t('name') }}
+            <input ref="input" :value="nameRef" @input="(event) => nameRef = (event.target as HTMLInputElement).value">
           </label>
         </div>
         <button class="btn btn-primary mt-2 w-full" :disabled="!nameRef" @click="onEdit">
-          Изменить
+          {{ t('change') }}
         </button>
       </div>
     </UiDialog>
-    <UiDialog v-model="dialogDelete" title="Удалить игрока?">
+    <UiDialog v-model="dialogDelete" :title="t('components.Player.delete')">
       <div>
-        Вы действительно хотите удалить игрока "{{ name }}"?
+        {{ t('components.Player.confirm', { name: fullName }) }}
         <div class="grid grid-cols-2 gap-4 mt-4">
           <button class="btn btn-outline mt-2" @click="dialogDelete = false">
-            Отмена
+            {{ t('cancel') }}
           </button>
           <button class="btn btn-primary mt-2" @click="onDelete">
-            Удалить
+            {{ t('delete') }}
           </button>
         </div>
       </div>
