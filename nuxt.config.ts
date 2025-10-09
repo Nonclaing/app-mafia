@@ -9,6 +9,8 @@ export default defineNuxtConfig({
     ["@vueuse/nuxt", {}],
     ["@nuxt/image", {}],
     ["@nuxt/eslint", {}],
+    ["@nuxt/ui", {}],
+    ["@vueuse/sound", {}],
     ["@nuxt/test-utils/module", {}],
     ["@nuxtjs/i18n", {
       langDir: "locales/",
@@ -71,6 +73,7 @@ export default defineNuxtConfig({
   imports: {
     imports: [
       { from: "@casl/vue", name: "useAbility" },
+      { from: "vue-timer-hook", name: "useStopwatch" },
     ],
   },
   devtools: { enabled: true },
@@ -84,6 +87,10 @@ export default defineNuxtConfig({
   css: [
     "~/assets/css/tailwind.css",
   ],
+  colorMode: {
+    preference: "dark",
+    fallback: "dark",
+  },
   runtimeConfig: {
     public: {},
   },

@@ -1,35 +1,37 @@
 <script setup lang="ts">
-import getDetail from "~/api/services/item/get";
+const game = useGameStore();
+const night = useNightStore();
+const players = computed(() => game.players);
+const allRolesCount = computed(() => game.allRolesCount);
 
-const { t } = useI18n();
-const { can } = useAbility();
-const { data } = await useAsyncData("item", () => getDetail("123"));
-
-useHead({
-  title: t("pages.root.title"),
-});
+const onStart = () => {
+  game.spreadRoles();
+  game.changeStage("showRoles");
+  night.setInitial(game.gamePlayers);
+  navigateTo(ROUTES.game.watchRoles);
+};
 </script>
 
 <template>
-  <div class="container mx-auto">
-    <div class="prose">
-      <div class="grid gap-4">
-        <div>
-          <h2>Пример ограничения по ролям</h2>
-          <div>{{ can('read', 'Item') }}</div>
-        </div>
-        <div>
-          <h2>Пример компонента формы</h2>
-          <UiCard />
-        </div>
-        <div>
-          {{ data }}
-        </div>
+  <div>
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-8">
+        Игроки
+      </h2>
+      <div class="flex flex-col">
+        <SetPlayers />
       </div>
-    </div>
+    </section>
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-8">
+        Роли
+      </h2>
+      <div class="flex flex-col">
+        <SelectRoles />
+      </div>
+    </section>
+    <button class="btn btn-primary uppercase mt-4 w-full" :disabled="useSize(players) !== allRolesCount || !useSize(players)" @click="onStart">
+      Начать игру
+    </button>
   </div>
 </template>
-
-<style module>
-
-</style>

@@ -1,0 +1,13 @@
+* text eol=lf
+*.eot binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+*.png binary
+*.jpeg binary
+*.jpg binary
+*.gif binary
+*.webp binary
+
+*.mp3 binary -diff -merge
+
