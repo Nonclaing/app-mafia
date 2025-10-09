@@ -6,7 +6,7 @@ const props = withDefaults(defineProps<{
 });
 
 const sounds = reactive({
-  alarm: useSound("./audio/timer-alarm.mp3"),
+  alarm: useSound("/audio/timer-alarm.mp3"),
 });
 
 const stopwatch = useStopwatch(0, false);

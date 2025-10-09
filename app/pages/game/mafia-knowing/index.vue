@@ -1,9 +1,9 @@
 <script setup lang="ts">
 const sounds = reactive({
-  start: useSound("./audio/mafia-knowing-start.mp3", { onend: () => {
+  start: useSound("/audio/mafia-knowing-start.mp3", { onend: () => {
     stage.value = "wait";
   } }),
-  end: useSound("./audio/mafia-knowing-end.mp3", { onend: () => {
+  end: useSound("/audio/mafia-knowing-end.mp3", { onend: () => {
     sounds.nightStart.play();
     navigateTo(ROUTES.game.night);
   } }),

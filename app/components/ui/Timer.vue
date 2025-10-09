@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const sounds = reactive({
-  countdown: useSound("./audio/countdown.mp3"),
+  countdown: useSound("/audio/countdown.mp3"),
 });
 
 const props = withDefaults(defineProps<{
