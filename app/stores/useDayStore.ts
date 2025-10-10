@@ -27,7 +27,9 @@ export const useDayStore = defineStore("day", () => {
     if (data.currentIdx === data.players.length - 1) return false;
 
     data.currentIdx += 1;
-    if (get(find(useGameStore().gamePlayers, { id: current.value.id }), "isDead")) next();
+    const player = find(useGameStore().gamePlayers, { id: current.value.id });
+    if (get(player, "isDead")) next();
+    if (get(player, "isKick")) next();
 
     data.currentStep += 1;
     return true;

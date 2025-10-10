@@ -1,15 +1,28 @@
 <script setup lang="ts">
+import { compact, map, uniq } from "es-toolkit/compat";
+
 const { t } = useI18n();
 const game = useGameStore();
 const day = useDayStore();
 const current = computed(() => day.current);
 
+const inVote = computed(() => {
+  return compact(uniq(map(day.players, ({ completedActions }) => completedActions["toVote"]?.id)));
+});
+
 const onNext = () => {
   if (day.next()) return;
 
-  game.changeStage("dayVoting");
-  day.resetSteps();
-  navigateTo(ROUTES.game.dayVoting);
+  if (useSize(inVote.value) > 1) {
+    game.changeStage("dayVoting");
+    day.resetSteps();
+    navigateTo(ROUTES.game.dayVoting);
+  }
+  else {
+    game.changeStage("dayVotingResult");
+    day.resetSteps();
+    navigateTo(ROUTES.game.dayVotingResult);
+  }
 };
 </script>
 

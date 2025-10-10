@@ -11,15 +11,15 @@ const roleData = computed(() => ({
     check: props.player.isDonChecked,
     roles: ["sherif"],
     src: "/images/roles/sherif.png",
-    success: t('components.Night.Player.Role.data.don.success'),
-    unsuccessful: t('components.Night.Player.Role.data.don.unsuccessful'),
+    success: t("components.Night.Player.Role.data.don.success"),
+    unsuccessful: t("components.Night.Player.Role.data.don.unsuccessful"),
   },
   sherif: {
     check: props.player.isSherifChecked,
     roles: ["don", "mafia"],
     src: "/images/roles/don.png",
-    success: t('components.Night.Player.Role.data.sherif.success'),
-    unsuccessful: t('components.Night.Player.Role.data.sherif.unsuccessful'),
+    success: t("components.Night.Player.Role.data.sherif.success"),
+    unsuccessful: t("components.Night.Player.Role.data.sherif.unsuccessful"),
   },
 }));
 
@@ -33,9 +33,9 @@ const currentData = computed(() => get(roleData.value, night.current.role.id));
     <div class="flex flex-col gap-1 items-center justify-center">
       <template v-if="isCurrent">
         <div class="font-bold mb-2">
-          {{ t('components.Night.Player.Role.you')  }}
+          {{ t('components.Night.Player.Role.you') }}
         </div>
-        <img class="w-[60px] h-[60px] object-contain" :src="props.player.role.src">
+        <img class="w-[60px] h-[60px] object-contain" :src="player.role.src">
       </template>
       <template v-else-if="!isEmpty(currentData) && get(currentData, 'check')">
         <template v-if="includes(get(currentData, 'roles'), player.role.id)">

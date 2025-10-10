@@ -58,11 +58,9 @@ export const useNightStore = defineStore("night", () => {
     });
   };
 
-  const checkKill = (): false | GamePlayer => {
+  const checkKill = (): false | string => {
     const selectedOnKill = uniq(compact(map(data.players, ({ completedActions }) => get(completedActions, "kill.id"))));
-    if (size(selectedOnKill) === 1) {
-      return useGameStore().kill(get(selectedOnKill, "0"));
-    }
+    if (size(selectedOnKill) === 1) return get(selectedOnKill, "0");
     return false;
   };
 

@@ -1,4 +1,4 @@
-import { reduce, set, values, filter, uniqueId, map, flatMap, size, get, pullAt } from "es-toolkit/compat";
+import { reduce, set, values, filter, uniqueId, map, flatMap, size, get, pullAt, includes } from "es-toolkit/compat";
 
 const STORAGE_KEY = "gameStore";
 
@@ -38,8 +38,16 @@ export const useGameStore = defineStore("game", () => {
 
   const initialData = useLocalStorage(STORAGE_KEY, initialState)!;
   const data = reactive<GameStore>(initialData.value);
-
   const allRolesCount = computed(() => reduce(values(data.roles), (r, v) => r + v.count, 0));
+  const winner: ComputedRef<GameWinner> = computed(() => {
+    const inGame = filter(data.gamePlayers, ({ isKick, isDead }) => !isKick && !isDead);
+    const peacefulCount = useSize(filter(inGame, ({ role }) => includes(["peaceful", "sherif"], role.id)));
+    const mafiaCount = useSize(filter(inGame, ({ role }) => includes(["mafia", "don"], role.id)));
+
+    if (!mafiaCount) return "peaceful";
+    if (peacefulCount <= mafiaCount) return "mafia";
+    return false;
+  });
 
   const updateRole = (name: Role["id"], count: number) => {
     set(data, ["roles", name, "count"], count);
@@ -120,6 +128,7 @@ export const useGameStore = defineStore("game", () => {
   };
 
   return {
+    winner,
     players: computed(() => data.players),
     gamePlayers: computed(() => data.gamePlayers),
     roles: computed(() => data.roles),

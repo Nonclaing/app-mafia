@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { find } from "es-toolkit/compat";
+
 const { t } = useI18n();
 const game = useGameStore();
 const night = useNightStore();
 const day = useDayStore();
-const deadPlayer = computed(() => night.checkKill());
+const deadPlayerId = computed(() => night.checkKill());
+const deadPlayer = computed(() => find(game.gamePlayers, { id: deadPlayerId.value }) as GamePlayer);
 
 const onClick = () => {
   game.changeStage("dayDiscussion");

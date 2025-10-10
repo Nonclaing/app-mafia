@@ -23,7 +23,18 @@ const onNext = () => {
   placeholder.value = true;
   if (night.next()) return;
 
-  if (night.checkKill()) sounds.dead.play();
+  const dead = night.checkKill();
+  if (dead) {
+    game.kill(dead);
+    if (game.winner) {
+      game.changeStage("end");
+      navigateTo(ROUTES.game.end);
+    }
+    else {
+      // TODO: не сработало
+      sounds.dead.play();
+    }
+  }
   else sounds.alive.play();
 
   navigateTo(ROUTES.game.day);
