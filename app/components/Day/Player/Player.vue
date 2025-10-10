@@ -5,6 +5,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   toVote: [value: string];
 }>();
+const { t } = useI18n();
 const name = computed(() => props.player.fullName);
 
 const onSuccess = () => {
@@ -20,9 +21,9 @@ const onSuccess = () => {
         {{ name }}
       </h2>
     </div>
-    <UiButtonConfirmation class="mt-auto" :title="`Вы точно хотите выставить игрока ${name}`" @success="onSuccess">
+    <UiButtonConfirmation class="mt-auto" :title="t('components.Day.Player.confirm', { name })" @success="onSuccess">
       <button class="btn btn-primary">
-        Выставить
+        {{ t('components.Day.Player.toVote') }}
       </button>
     </UiButtonConfirmation>
   </div>

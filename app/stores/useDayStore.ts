@@ -11,7 +11,7 @@ export const useDayStore = defineStore("day", () => {
 
   const initialData = useLocalStorage(STORAGE_KEY, initialState)!;
   const data = reactive<DayStore>(initialData.value);
-  const current = computed(() => get(data.players, data.currentIdx, {}));
+  const current = computed(() => get(data.players, data.currentIdx)!);
   const resetSteps = () => {
     data.currentIdx = -1;
     data.currentStep = -1;

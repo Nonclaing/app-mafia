@@ -30,7 +30,7 @@ const kickedPlayer = computed(() => {
   <div class="flex flex-col h-full">
     <div class="flex flex-col">
       <h1 class="text-2xl font-bold text-center mb-4">
-        Результат голосования
+        {{ t('components.Day.VotingResult.title') }}
       </h1>
     </div>
     <div class="grid grid-cols-1 gap-4 break-words">
@@ -39,21 +39,21 @@ const kickedPlayer = computed(() => {
           {{ fullName }} -
         </span>
         <span class="font-bold">
-          <!--          <span class="text-lg text-primary">{{ count }}</span> {{ pluralRules(count, ['голос', 'голоса', 'голосов']) }}: -->
+          <span class="text-lg text-primary">{{ count }}</span> {{ t('vote', count) }}:
         </span>
         <span>{{ list }}</span>
       </div>
     </div>
     <div class="mt-5">
       <div v-if="!sameVotes" class="text-xl font-bold text-center mb-4">
-        Был изгнан игрок: {{ groupByCount[maxCount][0].fullName }}
+        {{ t('components.Day.VotingResult.kicked', { name: groupByCount[maxCount][0].fullName }) }}
       </div>
       <div v-else class="text-xl font-bold text-center mb-4">
-        Никто не был изгнан. Объявляется второй раунд голосования
+        {{ t('components.Day.VotingResult.noKick') }}
       </div>
     </div>
     <UiButtonProgress class="w-full mt-auto">
-      Продолжить
+      {{ t('continue') }}
     </UiButtonProgress>
   </div>
 </template>

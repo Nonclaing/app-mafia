@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { compact, filter, includes, isEmpty, map, uniq } from "es-toolkit/compat";
 
+const { t } = useI18n();
 const game = useGameStore();
 const day = useDayStore();
 const current = computed(() => day.current);
@@ -28,20 +29,20 @@ const onNext = () => {
   <div class="flex flex-col h-full">
     <div class="flex flex-col">
       <h1 class="text-2xl font-bold text-center mb-1">
-        Голосование
+        {{ t('components.Day.Voting.title') }}
       </h1>
     </div>
     <div class="text-xl font-bold text-center mb-4 break-words">
-      Выбирает игрок: {{ current.fullName }}
+      {{ t('components.Day.Voting.chose', { name: current.fullName }) }}
     </div>
     <div v-if="!placeholder" class="grid grid-cols-2 gap-4">
       <DayVotingPlayer v-for="player in availablePlayers" :key="player.id" v-bind="{ player }" :disabled="!isEmpty(current.completedActions['vote'])" @vote="onVote" />
     </div>
     <UiButtonProgress v-if="placeholder" class="w-full mt-auto" @click="placeholder = false">
-      Начать
+      {{ t('start') }}
     </UiButtonProgress>
     <UiButtonProgress v-else class="w-full mt-auto" :disabled="isEmpty(current.completedActions['vote'])" @click="onNext">
-      Продолжить
+      {{ t('continue') }}
     </UiButtonProgress>
   </div>
 </template>

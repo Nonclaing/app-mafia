@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { t } = useI18n();
 const game = useGameStore();
 const day = useDayStore();
 const current = computed(() => day.current);
@@ -16,18 +17,18 @@ const onNext = () => {
   <div class="flex flex-col h-full">
     <div class="flex flex-col">
       <h1 class="text-2xl font-bold text-center mb-1">
-        Обсуждения
+        {{ t('page.Day.Discussion.title') }}
       </h1>
     </div>
     <div class="text-xl font-bold text-center mb-4 break-words">
-      Говорит игрок: "{{ current.name }}":
+      {{ t('page.Day.Discussion.say') }}"{{ current.fullName }}":
     </div>
     <UiStopwatch :key="current.id" class="mt-auto pb-4" />
     <div :key="current.id" class="mt-auto">
       <DayPutToVote />
       <UiButtonConfirmation title="Вы точно хотите закончить свой ход?" @success="onNext">
         <UiButtonProgress class="w-full">
-          Продолжить
+          {{ t('continue') }}
         </UiButtonProgress>
       </UiButtonConfirmation>
     </div>

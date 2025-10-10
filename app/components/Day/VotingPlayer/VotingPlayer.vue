@@ -6,6 +6,7 @@ const props = defineProps<{
 const emit = defineEmits<{
   vote: [value: string];
 }>();
+const { t } = useI18n();
 const name = computed(() => props.player.fullName);
 
 const onSuccess = () => {
@@ -21,9 +22,9 @@ const onSuccess = () => {
         {{ name }}
       </h2>
     </div>
-    <UiButtonConfirmation class="mt-auto" :title="`Вы точно хотите проголосовать за игрока ${name}`" @success="onSuccess">
+    <UiButtonConfirmation class="mt-auto" :title="t('components.Day.VotingPlayer.confirm', { name })" @success="onSuccess">
       <button class="btn btn-primary" :disabled="disabled">
-        Проголосовать
+        {{ t('components.Day.VotingPlayer.toVote') }}
       </button>
     </UiButtonConfirmation>
   </div>

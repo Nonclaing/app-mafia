@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { t } = useI18n();
 const game = useGameStore();
 const night = useNightStore();
 const day = useDayStore();
@@ -15,26 +16,26 @@ const onClick = () => {
   <div class="flex flex-col h-full">
     <h1 class="text-2xl font-bold text-center mb-4 break-words">
       <template v-if="deadPlayer">
-        Финальная речь игрока
+        {{ t('page.Day.finalTitle') }}
       </template>
       <template v-else>
-        Нажмите продолжить для начала переговоров
+        {{ t('page.Day.nextTitle') }}
       </template>
     </h1>
     <div class="flex flex-col my-auto">
       <h2 class="text-xl font-bold text-center mb-4 break-words">
         <template v-if="deadPlayer">
-          Умер игрок "{{ deadPlayer.name }}" ({{ deadPlayer.number }})
+          {{ t('page.Day.dead') }} "{{ deadPlayer.fullName }}"
         </template>
         <template v-else>
-          Никто не умер
+          {{ t('page.Day.noDead') }}
         </template>
       </h2>
     </div>
     <UiStopwatch v-if="deadPlayer" />
-    <UiButtonConfirmation title="Вы точно хотите начать переговоры?" @success="onClick">
+    <UiButtonConfirmation :title="t('page.Day.confirm')" @success="onClick">
       <UiButtonProgress :time="8000" class="w-full mt-6">
-        Продолжить
+        {{ t('continue') }}
       </UiButtonProgress>
     </UiButtonConfirmation>
   </div>
