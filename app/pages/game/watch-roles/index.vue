@@ -15,7 +15,7 @@ const onNext = () => {
 
 const onStart = () => {
   game.changeStage("night");
-  navigateTo(ROUTES.game.mafiaKnowing);
+  navigateTo(ROUTES.game.night);
 };
 </script>
 

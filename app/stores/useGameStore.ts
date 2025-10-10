@@ -94,6 +94,18 @@ export const useGameStore = defineStore("game", () => {
     return pl;
   };
 
+  const kick = (id: string): false | GamePlayer => {
+    let pl: false | GamePlayer = false;
+    data.gamePlayers = map(data.gamePlayers, (player) => {
+      if (player.id === id) {
+        player.isKick = true;
+        pl = player;
+      }
+      return player;
+    });
+    return pl;
+  };
+
   const nightAction = ({ action, id }: { action: NightPlayerAction; id: string }) => {
     data.gamePlayers = map(data.gamePlayers, (player) => {
       if (player.id === id) {
@@ -114,6 +126,7 @@ export const useGameStore = defineStore("game", () => {
     stage: computed(() => data.stage),
     allRolesCount,
     kill,
+    kick,
     addPlayer,
     updateRole,
     editPlayer,

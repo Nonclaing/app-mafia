@@ -29,11 +29,11 @@ const onNext = () => {
   <div class="flex flex-col h-full">
     <div class="flex flex-col">
       <h1 class="text-2xl font-bold text-center mb-1">
-        {{ t('components.Day.Voting.title') }}
+        {{ t('page.Day.Voting.title') }}
       </h1>
     </div>
     <div class="text-xl font-bold text-center mb-4 break-words">
-      {{ t('components.Day.Voting.chose', { name: current.fullName }) }}
+      {{ t('page.Day.Voting.chose', { name: current.fullName }) }}
     </div>
     <div v-if="!placeholder" class="grid grid-cols-2 gap-4">
       <DayVotingPlayer v-for="player in availablePlayers" :key="player.id" v-bind="{ player }" :disabled="!isEmpty(current.completedActions['vote'])" @vote="onVote" />

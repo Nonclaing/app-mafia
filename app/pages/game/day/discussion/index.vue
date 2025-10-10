@@ -21,7 +21,7 @@ const onNext = () => {
       </h1>
     </div>
     <div class="text-xl font-bold text-center mb-4 break-words">
-      {{ t('page.Day.Discussion.say') }}"{{ current.fullName }}":
+      {{ t('page.Day.Discussion.say') }} "{{ current.fullName }}"
     </div>
     <UiStopwatch :key="current.id" class="mt-auto pb-4" />
     <div :key="current.id" class="mt-auto">

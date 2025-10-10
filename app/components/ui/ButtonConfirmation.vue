@@ -22,7 +22,7 @@ const onReject = () => {
 
 <template>
   <div>
-    <div @click="show = true">
+    <div :class="$style.btn" @click="show = true">
       <slot />
     </div>
     <UiDialog v-model="show" :title="t('confirm')" @update:model-value="(v) => !v && onReject()">
@@ -40,3 +40,9 @@ const onReject = () => {
     </UiDialog>
   </div>
 </template>
+
+<style module>
+.btn:has(button[disabled], button:disabled) {
+  pointer-events: none;
+}
+</style>

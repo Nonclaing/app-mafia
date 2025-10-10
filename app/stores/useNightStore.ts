@@ -22,11 +22,17 @@ export const useNightStore = defineStore("night", () => {
     }
   });
   const completedActions = computed(() => keys(current.value?.completedActions)) as ComputedRef<NightPlayerAction[]>;
+  const reset = () => {
+    data.currentIdx = -1;
+    data.currentStep = -1;
+    data.players = map(data.players, (player) => ({ ...player, completedActions: {} as Record<NightPlayerAction, NightCompletedAction> }));
+    next();
+  };
 
   const setInitial = (players: GamePlayer[]) => {
     data.currentIdx = -1;
     data.currentStep = -1;
-    data.players = map(players, ({ id, role, name, fullName }) => ({ id, role, name, fullName, completedActions: {} as Record<NightPlayerAction, NightCompletedAction> }));
+    data.players = map(players, ({ id, role, name, fullName }) => ({ id, role, name, fullName, completedActions: {} as Record<NightPlayerAction, NightCompletedAction> })); ;
     next();
   };
 
@@ -34,7 +40,9 @@ export const useNightStore = defineStore("night", () => {
     if (data.currentIdx === data.players.length - 1) return false;
 
     data.currentIdx += 1;
-    if (get(find(useGameStore().gamePlayers, { id: current.value.id }), "isDead")) next();
+    const player = find(useGameStore().gamePlayers, { id: current.value.id });
+    if (get(player, "isDead")) next();
+    if (get(player, "isKick")) next();
 
     data.currentStep += 1;
     return true;
@@ -65,6 +73,7 @@ export const useNightStore = defineStore("night", () => {
     availableActions,
     completedActions,
     next,
+    reset,
     action,
     checkKill,
     setInitial,

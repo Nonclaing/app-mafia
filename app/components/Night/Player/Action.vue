@@ -17,7 +17,7 @@ const completedActions = computed(() => night.completedActions);
 const name = computed(() => props.player.fullName);
 const actionData = computed(() => ({
   kill: {
-    disabled: props.player.isDead,
+    disabled: props.player.isDead || props.player.isKick,
     btnColor: "btn-error",
   },
   donCheck: {

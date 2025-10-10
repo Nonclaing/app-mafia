@@ -7,7 +7,7 @@ const allRolesCount = computed(() => game.allRolesCount);
 
 const onStart = () => {
   game.spreadRoles();
-  game.changeStage("showRoles");
+  game.changeStage("watchRoles");
   night.setInitial(game.gamePlayers);
   navigateTo(ROUTES.game.watchRoles);
 };

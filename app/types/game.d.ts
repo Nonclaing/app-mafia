@@ -24,5 +24,5 @@ type GameStore = {
   players: Player[];
   gamePlayers: GamePlayer[];
   roles: Record<Role["id"], Role>;
-  stage: "startMenu" | "showRoles" | "mafiaKnowing" | "night" | "day" | "dayDiscussion" | "dayVoting" | "dayVotingResult" | "master";
+  stage: "startMenu" | "watchRoles" | "mafiaKnowing" | "night" | "day" | "dayDiscussion" | "dayVoting" | "dayVotingResult" | "master";
 };
