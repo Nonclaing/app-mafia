@@ -7,6 +7,7 @@ const emit = defineEmits<{
   reject: [];
 }>();
 
+const { t } = useI18n();
 const show = ref<boolean>(false);
 const onSuccess = () => {
   show.value = false;
@@ -24,15 +25,15 @@ const onReject = () => {
     <div @click="show = true">
       <slot />
     </div>
-    <UiDialog v-model="show" title="Подтверждение" @update:model-value="(v) => !v && onReject()">
+    <UiDialog v-model="show" :title="t('confirm')" @update:model-value="(v) => !v && onReject()">
       <div class="mt-4">
         {{ title }}
         <div class="grid grid-cols-2 gap-4 mt-4">
           <button class="btn btn-outline mt-2" @click="onReject">
-            Отмена
+            {{ t('cancel') }}
           </button>
           <button class="btn btn-primary mt-2" @click="onSuccess">
-            Да
+            {{ t('yes') }}
           </button>
         </div>
       </div>

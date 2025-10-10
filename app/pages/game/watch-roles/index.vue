@@ -21,6 +21,6 @@ const onStart = () => {
 
 <template>
   <WatchRolesWatch v-if="state === 'watch'" :player="current" @next="onNext" />
-  <WatchRolesPlacholder v-else-if="state === 'placeholder'" @show="state = 'watch'" />
+  <WatchRolesPlaceholder v-else-if="state === 'placeholder'" @show="state = 'watch'" />
   <WatchRolesStart v-else @start="onStart" />
 </template>

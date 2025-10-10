@@ -11,8 +11,7 @@ const props = defineProps<{
 
 const { t } = useI18n();
 const nameRef = toRef<string>(props.name);
-const dialogChange = ref<boolean>(false);
-const dialogDelete = ref<boolean>(false);
+const dialogChange = ref<boolean>(false);;
 const input = shallowRef();
 const { focused } = useFocus(input);
 
@@ -36,7 +35,7 @@ const onDelete = () => {
     <button class="text-primary absolute p-2 top-0 left-0" @click="showChange">
       <Icon name="mdi:pencil" size="24" />
     </button>
-    <UiButtonConfirmation class="mt-auto" :title="t('components.Player.delete')" @success="onDelete">
+    <UiButtonConfirmation class="mt-auto" :title="t('components.Player.confirm', { name: fullName })" @success="onDelete">
       <button class="text-primary absolute p-2 top-0 right-0">
         <Icon name="mdi:trash" size="24" />
       </button>
@@ -58,19 +57,6 @@ const onDelete = () => {
         <button class="btn btn-primary mt-2 w-full" :disabled="!nameRef" @click="onEdit">
           {{ t('change') }}
         </button>
-      </div>
-    </UiDialog>
-    <UiDialog v-model="dialogDelete" :title="t('components.Player.delete')">
-      <div>
-        {{ t('components.Player.confirm', { name: fullName }) }}
-        <div class="grid grid-cols-2 gap-4 mt-4">
-          <button class="btn btn-outline mt-2" @click="dialogDelete = false">
-            {{ t('cancel') }}
-          </button>
-          <button class="btn btn-primary mt-2" @click="onDelete">
-            {{ t('delete') }}
-          </button>
-        </div>
       </div>
     </UiDialog>
   </div>

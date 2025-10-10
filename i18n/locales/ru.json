@@ -10,15 +10,36 @@
   "change": "Изменить",
   "cancel": "Отмена",
   "delete": "Удалить",
+  "yes": "Да",
   "name": "Имя",
+  "confirm": "Подтверждение",
   "components": {
     "SetPlayers": {
       "add": "Добавить игрока"
     },
     "Player": {
       "changeName": "Изменить имя",
-      "delete": "Удалить игрока?",
       "confirm": "Вы действительно хотите удалить игрока \"{name}\"?"
+    },
+    "WatchRoles": {
+      "Placeholder": {
+        "title": "Передай&nbsp;телефон следующему&nbsp;игроку",
+        "open": "Открыть роль"
+      },
+      "Start": {
+        "title": "Передай телефон первому игроку"
+      },
+      "Watch": {
+        "title": "Посмотри&nbsp;и&nbsp;запомни свою&nbsp;роль",
+        "remember": "Запомнил"
+      }
+    },
+    "ui": {
+      "Stopwatch": {
+        "pause": "Пауза",
+        "start": "Старт",
+        "restart": "Рестарт"
+      }
     }
   }
 }

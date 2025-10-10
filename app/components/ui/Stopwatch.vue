@@ -5,6 +5,7 @@ const props = withDefaults(defineProps<{
   maxTime: 60_000,
 });
 
+const { t } = useI18n();
 const sounds = reactive({
   alarm: useSound("/audio/timer-alarm.mp3"),
 });
@@ -42,14 +43,14 @@ onUnmounted(() => {
     <div class="flex gap-2">
       <template v-if="!isEnd">
         <button v-if="stopwatch.isRunning.value" class="btn btn-primary flex-1" @click="stopwatch.pause()">
-          Пауза
+          {{ t('components.ui.Stopwatch.pause') }}
         </button>
         <button v-else class="btn btn-primary flex-1" @click="stopwatch.start()">
-          Старт
+          {{ t('components.ui.Stopwatch.start') }}
         </button>
       </template>
       <button class="btn btn-outline text-primary flex-1" @click="onReset">
-        Рестарт
+        {{ t('components.ui.Stopwatch.restart') }}
       </button>
     </div>
   </div>

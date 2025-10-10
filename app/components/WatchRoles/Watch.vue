@@ -7,6 +7,7 @@ const props = defineProps<{
   player: GamePlayer;
 }>();
 
+const { t } = useI18n();
 const name = computed(() => props.player.fullName);
 const role = computed(() => props.player.role.name || "");
 const src = computed(() => props.player.role.src || "");
@@ -14,12 +15,10 @@ const src = computed(() => props.player.role.src || "");
 
 <template>
   <div class="flex flex-col h-full">
-    <h1 class="text-2xl font-bold mb-8 text-center">
-      Посмотри и запомни<br> свою роль
-    </h1>
+    <h1 class="text-2xl font-bold mb-8 text-center" v-html="t('components.WatchRoles.Watch.title')"></h1>
     <WatchRolesRole :name="name" :role="role" :src="src" />
     <UiButtonProgress class="mt-auto" :time="2000" @click="emit('next')">
-      Запомнил
+      {{ t('components.WatchRoles.Watch.remember') }}
     </UiButtonProgress>
   </div>
 </template>
