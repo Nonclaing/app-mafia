@@ -3,37 +3,39 @@ import { reduce, set, values, filter, uniqueId, map, flatMap, size, get, pullAt 
 const STORAGE_KEY = "gameStore";
 
 export const useGameStore = defineStore("game", () => {
+  const { t } = useI18n();
   const initialState: GameStore = {
     players: [],
     gamePlayers: [],
     roles: {
       mafia: {
         id: "mafia",
-        name: "Мафия",
+        name: t("stores.roles.mafia"),
         src: "/images/roles/mafia.png",
         count: 0,
       },
       don: {
         id: "don",
-        name: "Дон",
+        name: t("stores.roles.don"),
         src: "/images/roles/don.png",
         count: 0,
       },
       peaceful: {
         id: "peaceful",
-        name: "Мирный",
+        name: t("stores.roles.peaceful"),
         src: "/images/roles/peaceful.png",
         count: 0,
       },
       sherif: {
         id: "sherif",
-        name: "Шериф",
+        name: t("stores.roles.sherif"),
         src: "/images/roles/sherif.png",
         count: 0,
       },
     },
     stage: "startMenu",
   };
+
   const initialData = useLocalStorage(STORAGE_KEY, initialState)!;
   const data = reactive<GameStore>(initialData.value);
 

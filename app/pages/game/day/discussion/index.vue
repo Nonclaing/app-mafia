@@ -26,7 +26,7 @@ const onNext = () => {
     <UiStopwatch :key="current.id" class="mt-auto pb-4" />
     <div :key="current.id" class="mt-auto">
       <DayPutToVote />
-      <UiButtonConfirmation title="Вы точно хотите закончить свой ход?" @success="onNext">
+      <UiButtonConfirmation :title="t('page.Day.Discussion.endConfirmation')" @success="onNext">
         <UiButtonProgress class="w-full">
           {{ t('continue') }}
         </UiButtonProgress>
