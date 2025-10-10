@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { size } from "es-toolkit/compat";
 
+const { t } = useI18n();
 const game = useGameStore();
 const night = useNightStore();
 
@@ -41,19 +42,19 @@ const onAction = (action: NightPlayerAction, id: string) => {
   <div class="flex flex-col h-full">
     <template v-if="placeholder">
       <h1 class="text-2xl font-bold text-center h-full mb-4">
-        Нажми на кнопку чтобы начать свой ход
+        {{ t('page.Night.title') }}
       </h1>
       <UiButtonProgress :time="1000" @click="placeholder = false">
-        Начать
+        {{ t('start') }}
       </UiButtonProgress>
     </template>
     <template v-else>
       <div class="mb-8">
         <div class="break-words mb-4">
-          Ты: <span class="font-bold">{{ current.role.name }}</span>
+          {{ t('page.Night.you') }} <span class="font-bold">{{ current.role.name }}</span>
         </div>
         <h1 class="text-2xl font-bold break-words mb-4">
-          Игроки
+          {{ t('players') }}
         </h1>
         <div class="grid grid-cols-2 gap-2">
           <NightPlayer
@@ -64,7 +65,7 @@ const onAction = (action: NightPlayerAction, id: string) => {
         </div>
       </div>
       <UiButtonProgress :time="5000" class="w-full mt-auto" :disabled="!canEndTurn" @click="onNext">
-        Закончил
+        {{ t('end') }}
       </UiButtonProgress>
     </template>
   </div>
