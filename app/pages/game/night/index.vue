@@ -41,9 +41,12 @@ const onAction = (action: NightPlayerAction, id: string) => {
 <template>
   <div class="flex flex-col h-full">
     <template v-if="placeholder">
-      <h1 class="text-2xl font-bold text-center h-full mb-4">
+      <h1 class="text-2xl font-bold text-center mb-4">
         {{ t('page.Night.title') }}
       </h1>
+      <div class="text-2xl text-center my-auto">
+        {{ t('page.Night.current', { name: current.fullName }) }}
+      </div>
       <UiButtonProgress :time="1000" @click="placeholder = false">
         {{ t('start') }}
       </UiButtonProgress>

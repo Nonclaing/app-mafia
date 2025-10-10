@@ -26,7 +26,7 @@ export const useNightStore = defineStore("night", () => {
   const setInitial = (players: GamePlayer[]) => {
     data.currentIdx = -1;
     data.currentStep = -1;
-    data.players = map(players, ({ id, role }) => ({ id, role, completedActions: {} as Record<NightPlayerAction, NightCompletedAction> }));
+    data.players = map(players, ({ id, role, name, fullName }) => ({ id, role, name, fullName, completedActions: {} as Record<NightPlayerAction, NightCompletedAction> }));
     next();
   };
 

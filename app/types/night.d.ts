@@ -7,6 +7,8 @@ type NightCompletedAction = {
 
 type NightPlayer = {
   id: string;
+  name: string;
+  fullName: string;
   role: Role;
   completedActions: Record<NightPlayerAction, NightCompletedAction>;
 };

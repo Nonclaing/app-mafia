@@ -15,7 +15,7 @@ const src = computed(() => props.player.role.src || "");
 
 <template>
   <div class="flex flex-col h-full">
-    <h1 class="text-2xl font-bold mb-8 text-center" v-html="t('components.WatchRoles.Watch.title')"></h1>
+    <h1 class="text-2xl font-bold mb-8 text-center" v-html="t('components.WatchRoles.Watch.title')" />
     <WatchRolesRole :name="name" :role="role" :src="src" />
     <UiButtonProgress class="mt-auto" :time="2000" @click="emit('next')">
       {{ t('components.WatchRoles.Watch.remember') }}
