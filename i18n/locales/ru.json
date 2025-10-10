@@ -3,6 +3,7 @@
   "players": "Игроки",
   "role": "Ролей | Роль | Роли | Ролей",
   "roles": "Роли",
+  "start": "Начать",
   "startGame": "Начать игру",
   "totalPlayers": "Всего @.lower:player{':'}",
   "totalRoles": "Всего @.lower:role{':'}",
@@ -13,6 +14,12 @@
   "yes": "Да",
   "name": "Имя",
   "confirm": "Подтверждение",
+  "page": {
+    "MafiaKnowing": {
+      "title": " Знакомство с мафией",
+      "start": "Нажми на&nbsp;кнопку и&nbsp;закрой газа, для начала"
+    }
+  },
   "components": {
     "SetPlayers": {
       "add": "Добавить игрока"

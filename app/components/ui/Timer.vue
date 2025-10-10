@@ -33,7 +33,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <span class="countdown font-mono text-8xl">
+  <span :class="[$style.root,  'countdown font-mono text-8xl']">
     <span :style="`--value: ${remaining};`" aria-live="polite" :aria-label="remaining">{{ remaining }}</span>
   </span>
 </template>
+
+<style module>
+.root {
+  font-family: 'Share Tech Mono', sans-serif;
+}
+</style>
