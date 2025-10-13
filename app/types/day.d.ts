@@ -17,4 +17,5 @@ type DayStore = {
   players: DayPlayer[];
   currentIdx: number;
   currentStep: number;
+  repeatVoting: boolean;
 };

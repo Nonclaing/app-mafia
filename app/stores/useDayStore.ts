@@ -1,4 +1,4 @@
-import { find, get, map, set } from "es-toolkit/compat";
+import { find, get, groupBy, compact, map, set, max, reduce } from "es-toolkit/compat";
 
 const STORAGE_KEY = "dayStore";
 
@@ -7,15 +7,38 @@ export const useDayStore = defineStore("day", () => {
     players: [],
     currentIdx: -1,
     currentStep: -1,
+    repeatVoting: false,
   };
 
   // TODO: сдвиг хода на 1
   const initialData = useLocalStorage(STORAGE_KEY, initialState)!;
   const data = reactive<DayStore>(initialData.value);
   const current = computed(() => get(data.players, data.currentIdx)!);
+
+  const repeatVoting = () => {
+    resetSteps();
+    const byVoteId = groupBy(data.players, ({ completedActions }) => get(completedActions, "vote.id", ""));
+    const voted = compact(map(byVoteId, (value, key) => {
+      if (!key) return;
+      return { key, value: useSize(value) };
+    }));
+    const maxCount = max(map(voted, "value")) || 0;
+    const available = reduce(voted, (res, curr) => {
+      if (curr.value === maxCount) set(res, curr.key, true);
+      return res;
+    }, {});
+    data.players = map(data.players, (player) => {
+      const toVote = player.completedActions.toVote;
+      const completedActions = (get(available, toVote?.id, "") ? { toVote: toVote } : {}) as Record<DayPlayerAction, DayCompletedAction>;
+      return { ...player, completedActions };
+    });
+    data.repeatVoting = true;
+  };
+
   const resetSteps = () => {
     data.currentIdx = -1;
     data.currentStep = -1;
+    data.repeatVoting = false;
     next();
   };
 
@@ -46,11 +69,13 @@ export const useDayStore = defineStore("day", () => {
   return {
     data, // TODO: для теста
     current,
+    // repeatVoting: computed(() => data.repeatVoting),
     players: computed(() => data.players),
     currentStep: computed(() => data.currentStep),
     next,
     action,
     setInitial,
     resetSteps,
+    repeatVoting,
   };
 });

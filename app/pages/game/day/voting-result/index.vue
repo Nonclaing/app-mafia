@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { compact, get, groupBy, join, keys, map, max } from "es-toolkit/compat";
+import { compact, first, get, groupBy, join, keys, map, max } from "es-toolkit/compat";
 import { useGet } from "#imports";
 
 const { t } = useI18n();
@@ -25,10 +25,13 @@ const resultVotes = computed(() => {
 const groupByCount = computed(() => groupBy(resultVotes.value, "count"));
 const maxCount = computed(() => max(keys(groupByCount.value)) || 0);
 const sameVotes = computed(() => useSize(useGet(groupByCount.value, [maxCount.value], [])) > 1);
-const kickedPlayer = computed(() => get(groupByCount.value, [maxCount.value, 0]));
+const kickedPlayers = computed(() => get(groupByCount.value, [maxCount.value], {}));
+const kickedPlayer: ComputedRef<DayPlayer> = computed(() => first(kickedPlayers.value));
 
 const onRepeatVoting = () => {
-
+  day.repeatVoting();
+  game.changeStage("dayVoting");
+  navigateTo(ROUTES.game.dayVoting);
 };
 
 const onContinue = () => {
