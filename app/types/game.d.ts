@@ -6,7 +6,7 @@ type Player = {
 };
 
 type Role = {
-  id: "mafia" | "don" | "peaceful" | "sherif";
+  id: "mafia" | "don" | "peaceful" | "sheriff";
   src: string;
   name: string;
   count: number;
@@ -14,10 +14,7 @@ type Role = {
 
 type GamePlayer = Player & {
   role: Role;
-  isKick: boolean;
-  isDead: boolean;
-  isDonChecked: boolean;
-  isSherifChecked: boolean;
+  state: Record<GamePlayerState, boolean>;
 };
 
 type GameStore = {
@@ -28,3 +25,5 @@ type GameStore = {
 };
 
 type GameWinner = "peaceful" | "mafia" | false;
+
+type GamePlayerState = "kick" | "kill" | "donCheck" | "sheriffCheck";

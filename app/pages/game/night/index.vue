@@ -12,7 +12,7 @@ const availableActions = computed(() => night.availableActions);
 const completedActions = computed(() => night.completedActions);
 const current = computed(() => night.current);
 
-const canEndTurn = computed(() => size(completedActions.value) === size(availableActions.value));
+const canEndTurn = computed(() => size(completedActions.value) >= size(availableActions.value));
 
 const sounds = reactive({
   alive: useSound("/audio/day-alive.mp3"),
@@ -29,11 +29,9 @@ const onNext = () => {
     if (game.winner) {
       game.changeStage("end");
       navigateTo(ROUTES.game.end);
+      return;
     }
-    else {
-      // TODO: не сработало
-      sounds.dead.play();
-    }
+    else sounds.dead.play();
   }
   else sounds.alive.play();
 

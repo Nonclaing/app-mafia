@@ -5,7 +5,7 @@ const { t } = useI18n();
 const show = ref<boolean>(false);
 const game = useGameStore();
 const day = useDayStore();
-const availablePlayers: ComputedRef<GamePlayer[]> = computed(() => filter(game.gamePlayers, ({ isDead, id }) => !isDead && id !== current.value.id));
+const availablePlayers: ComputedRef<GamePlayer[]> = computed(() => filter(game.gamePlayers, ({ state, id }) => !state.kill && id !== current.value.id));
 const current = computed(() => day.current);
 
 const onVote = (id: string) => {

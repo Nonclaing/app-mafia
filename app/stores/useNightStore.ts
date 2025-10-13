@@ -1,4 +1,4 @@
-import { compact, find, get, includes, keys, map, set, size, uniq } from "es-toolkit/compat";
+import { compact, find, get, includes, keys, map, set, size, some, uniq } from "es-toolkit/compat";
 
 const STORAGE_KEY = "nightStore";
 
@@ -15,13 +15,26 @@ export const useNightStore = defineStore("night", () => {
   const availableActions: ComputedRef<NightPlayerAction[]> = computed(() => {
     switch (get(current.value, "role.id", "")) {
       case "peaceful": return ["pass"];
-      case "don": return ["kill", "donCheck"];
-      case "sherif": return ["cherifCheck"];
+      case "don": {
+        const arr: NightPlayerAction[] = ["kill"];
+        if (isAvailableAction("donCheck")) arr.push("donCheck");
+        return arr;
+      }
+      case "sheriff": {
+        const arr: NightPlayerAction[] = [];
+        if (isAvailableAction("sheriffCheck")) arr.push("sheriffCheck");
+        return arr;
+      }
       case "mafia": return ["kill"];
       default: return [];
     }
   });
   const completedActions = computed(() => keys(current.value?.completedActions)) as ComputedRef<NightPlayerAction[]>;
+
+  const isAvailableAction = (action: GamePlayerState) => {
+    return some(useGameStore().gamePlayers, ({ state, id }) => id !== current.value.id && state[action] === false);
+  };
+
   const reset = () => {
     data.currentIdx = -1;
     data.currentStep = -1;
@@ -40,11 +53,10 @@ export const useNightStore = defineStore("night", () => {
     if (data.currentIdx === data.players.length - 1) return false;
 
     data.currentIdx += 1;
-    const player = find(useGameStore().gamePlayers, { id: current.value.id });
-    if (get(player, "isDead")) next();
-    if (get(player, "isKick")) next();
-
     data.currentStep += 1;
+    const player = find(useGameStore().gamePlayers, { id: current.value.id });
+    if (get(player, "state.kill")) return next();
+    if (get(player, "state.kick")) return next();
     return true;
   };
 
@@ -52,7 +64,7 @@ export const useNightStore = defineStore("night", () => {
     data.players = map(data.players, (player) => {
       if (player.id === current.value.id) {
         set(player, ["completedActions", action], { action, id });
-        if (includes(["donCheck", "cherifCheck"], action)) useGameStore().nightAction({ action, id });
+        if (includes(["donCheck", "sheriffCheck"], action)) useGameStore().nightAction({ action, id });
       }
       return player;
     });

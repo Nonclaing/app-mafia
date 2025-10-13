@@ -9,6 +9,7 @@ export const useDayStore = defineStore("day", () => {
     currentStep: -1,
   };
 
+  // TODO: сдвиг хода на 1
   const initialData = useLocalStorage(STORAGE_KEY, initialState)!;
   const data = reactive<DayStore>(initialData.value);
   const current = computed(() => get(data.players, data.currentIdx)!);
@@ -28,8 +29,8 @@ export const useDayStore = defineStore("day", () => {
 
     data.currentIdx += 1;
     const player = find(useGameStore().gamePlayers, { id: current.value.id });
-    if (get(player, "isDead")) next();
-    if (get(player, "isKick")) next();
+    if (get(player, "state.kill")) next();
+    if (get(player, "state.kick")) next();
 
     data.currentStep += 1;
     return true;

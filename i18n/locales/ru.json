@@ -85,7 +85,7 @@
               "success": "Шериф",
               "unsuccessful": "Не шериф"
             },
-            "sherif": {
+            "sheriff": {
               "success": "Мафия",
               "unsuccessful": "Не мафия"
             }
@@ -101,7 +101,7 @@
               "title": "Вы точно хотите узнать роль игрока \"{name}\"?",
               "btn": "Проверить"
             },
-            "cherifCheck": {
+            "sheriffCheck": {
               "title": "Вы точно хотите узнать роль игрока \"{name}\"?",
               "btn": "Проверить"
             },
@@ -147,7 +147,7 @@
       "mafia": "Мафия",
       "don": "Дон",
       "peaceful": "Мирный",
-      "sherif": "Шериф"
+      "sheriff": "Шериф"
     }
   }
 }

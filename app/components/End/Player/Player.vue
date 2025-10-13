@@ -13,10 +13,10 @@ const name = computed(() => props.player.fullName);
         <div class="font-bold ">
           {{ player.role.name }}
         </div>
-        <div v-if="player.isKick">
+        <div v-if="player.state.kick">
           Исключён
         </div>
-        <div v-if="player.isDead">
+        <div v-if="player.state.kill">
           Убит
         </div>
         <img class="w-[60px] h-[60px] object-contain mt-2" :src="player.role.src">

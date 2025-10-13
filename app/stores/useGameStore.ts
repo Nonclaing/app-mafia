@@ -26,10 +26,10 @@ export const useGameStore = defineStore("game", () => {
         src: "/images/roles/peaceful.png",
         count: 0,
       },
-      sherif: {
-        id: "sherif",
-        name: t("stores.roles.sherif"),
-        src: "/images/roles/sherif.png",
+      sheriff: {
+        id: "sheriff",
+        name: t("stores.roles.sheriff"),
+        src: "/images/roles/sheriff.png",
         count: 0,
       },
     },
@@ -40,8 +40,8 @@ export const useGameStore = defineStore("game", () => {
   const data = reactive<GameStore>(initialData.value);
   const allRolesCount = computed(() => reduce(values(data.roles), (r, v) => r + v.count, 0));
   const winner: ComputedRef<GameWinner> = computed(() => {
-    const inGame = filter(data.gamePlayers, ({ isKick, isDead }) => !isKick && !isDead);
-    const peacefulCount = useSize(filter(inGame, ({ role }) => includes(["peaceful", "sherif"], role.id)));
+    const inGame = filter(data.gamePlayers, ({ state }) => !state.kick && !state.kill);
+    const peacefulCount = useSize(filter(inGame, ({ role }) => includes(["peaceful", "sheriff"], role.id)));
     const mafiaCount = useSize(filter(inGame, ({ role }) => includes(["mafia", "don"], role.id)));
 
     if (!mafiaCount) return "peaceful";
@@ -74,7 +74,7 @@ export const useGameStore = defineStore("game", () => {
       const index = Math.floor(Math.random() * size(rolesPool));
       const role = get(rolesPool, index); ;
       pullAt(rolesPool, index);
-      return { ...item, role, isDead: false, isDonChecked: false, isSherifChecked: false };
+      return { ...item, role, state: { kick: false, kill: false, donCheck: false, sheriffCheck: false } };
     });
   };
 
@@ -94,7 +94,7 @@ export const useGameStore = defineStore("game", () => {
     let pl: false | GamePlayer = false;
     data.gamePlayers = map(data.gamePlayers, (player) => {
       if (player.id === id) {
-        player.isDead = true;
+        player.state.kill = true;
         pl = player;
       }
       return player;
@@ -106,7 +106,7 @@ export const useGameStore = defineStore("game", () => {
     let pl: false | GamePlayer = false;
     data.gamePlayers = map(data.gamePlayers, (player) => {
       if (player.id === id) {
-        player.isKick = true;
+        player.state.kick = true;
         pl = player;
       }
       return player;
@@ -118,9 +118,12 @@ export const useGameStore = defineStore("game", () => {
     data.gamePlayers = map(data.gamePlayers, (player) => {
       if (player.id === id) {
         switch (action) {
-          case "cherifCheck": return { ...player, isSherifChecked: true };
-          case "donCheck": return { ...player, isDonChecked: true };
-          default: return player;
+          case "sheriffCheck":
+            player.state.sheriffCheck = true;
+            break;
+          case "donCheck":
+            player.state.donCheck = true;
+            break;
         }
       }
       return player;

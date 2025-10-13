@@ -17,19 +17,19 @@ const completedActions = computed(() => night.completedActions);
 const name = computed(() => props.player.fullName);
 const actionData = computed(() => ({
   kill: {
-    disabled: props.player.isDead || props.player.isKick,
+    disabled: props.player.state.kill || props.player.state.kick,
     btnColor: "btn-error",
   },
   donCheck: {
-    disabled: props.player.isDonChecked || !includes(completedActions.value, "kill") || isCurrent.value,
+    disabled: props.player.state.donCheck || !includes(completedActions.value, "kill") || isCurrent.value,
     btnColor: "btn-info",
   },
-  cherifCheck: {
-    disabled: props.player.isSherifChecked || isCurrent.value,
+  sheriffCheck: {
+    disabled: props.player.state.sheriffCheck || isCurrent.value,
     btnColor: "btn-info",
   },
   pass: {
-    disabled: false,
+    disabled: !isCurrent.value,
     btnColor: "btn-success",
   },
 }));

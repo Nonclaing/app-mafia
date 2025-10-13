@@ -32,8 +32,8 @@ const onRepeatVoting = () => {
 };
 
 const onContinue = () => {
-  night.reset();
   if (kickedPlayer.value) game.kick(kickedPlayer.value.id);
+  night.reset();
   if (game.winner) {
     game.changeStage("end");
     navigateTo(ROUTES.game.end);

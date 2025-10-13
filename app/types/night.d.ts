@@ -1,4 +1,4 @@
-type NightPlayerAction = "kill" | "donCheck" | "cherifCheck" | "pass";
+type NightPlayerAction = "kill" | "donCheck" | "sheriffCheck" | "pass";
 
 type NightCompletedAction = {
   id: string;
