@@ -8,7 +8,6 @@ useSchemaOrg([
   }),
   defineWebPage(),
 ]);
-// TODO: голосования
 // TODO: редиректы
 // TODO: список выставленных на голосование
 // TODO: работа со звуками
@@ -20,6 +19,7 @@ useSchemaOrg([
 // TODO: API
 // TODO: онлайн режим
 // TODO: автозаполнение ролей
+// TODO: режим убийства не в слепую
 </script>
 
 <template>

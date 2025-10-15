@@ -2,4 +2,6 @@
 // TODO: режим ведущего
 </script>
 
-<template></template>
+<template>
+  <div />
+</template>

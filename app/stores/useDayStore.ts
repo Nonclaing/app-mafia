@@ -7,7 +7,7 @@ export const useDayStore = defineStore("day", () => {
     players: [],
     currentIdx: -1,
     currentStep: -1,
-    repeatVoting: false,
+    isSecondVoting: false,
   };
 
   // TODO: сдвиг хода на 1
@@ -32,13 +32,13 @@ export const useDayStore = defineStore("day", () => {
       const completedActions = (get(available, toVote?.id, "") ? { toVote: toVote } : {}) as Record<DayPlayerAction, DayCompletedAction>;
       return { ...player, completedActions };
     });
-    data.repeatVoting = true;
+    data.isSecondVoting = true;
   };
 
   const resetSteps = () => {
     data.currentIdx = -1;
     data.currentStep = -1;
-    data.repeatVoting = false;
+    data.isSecondVoting = false;
     next();
   };
 
@@ -69,7 +69,7 @@ export const useDayStore = defineStore("day", () => {
   return {
     data, // TODO: для теста
     current,
-    // repeatVoting: computed(() => data.repeatVoting),
+    isSecondVoting: computed(() => data.isSecondVoting),
     players: computed(() => data.players),
     currentStep: computed(() => data.currentStep),
     next,

@@ -43,7 +43,7 @@ onMounted(async () => {
   left: 0;
   height: 100%;
   width: 0;
-  background-color: var(--color-primary);
+  background-color: var(--btn-color);
   transition: width var(--time) linear;
 }
 

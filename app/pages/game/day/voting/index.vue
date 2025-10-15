@@ -9,7 +9,6 @@ const placeholder = ref<boolean>(true);
 
 const availablePlayers = computed(() => {
   const inVote = compact(uniq(map(day.players, ({ completedActions }) => completedActions["toVote"]?.id)));
-  console.log(inVote);
   return filter(day.players, ({ id }) => includes(inVote, id) && current.value.id !== id);
 });
 

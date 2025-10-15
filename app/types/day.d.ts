@@ -1,4 +1,4 @@
-type DayPlayerAction = "toVote" | "vote";
+type DayPlayerAction = "toVote" | "vote" | "kick" | "save";
 
 type DayCompletedAction = {
   id: string;
@@ -17,5 +17,5 @@ type DayStore = {
   players: DayPlayer[];
   currentIdx: number;
   currentStep: number;
-  repeatVoting: boolean;
+  isSecondVoting: boolean;
 };

@@ -44,7 +44,6 @@ const onAction = (action: NightPlayerAction, id: string) => {
 
 // TODO: аудио (выключение аудио при onMounted)
 // TODO: музычка во вермя ночи
-// TODO: режим убийства не в слепую
 </script>
 
 <template>

@@ -28,6 +28,12 @@ const sameVotes = computed(() => useSize(useGet(groupByCount.value, [maxCount.va
 const kickedPlayers = computed(() => get(groupByCount.value, [maxCount.value], {}));
 const kickedPlayer: ComputedRef<DayPlayer> = computed(() => first(kickedPlayers.value));
 
+const onFinalVoting = () => {
+  day.resetSteps();
+  game.changeStage("dayVotingFinal");
+  navigateTo(ROUTES.game.dayVotingFinal);
+};
+
 const onRepeatVoting = () => {
   day.repeatVoting();
   game.changeStage("dayVoting");
@@ -46,10 +52,6 @@ const onContinue = () => {
     navigateTo(ROUTES.game.night);
   }
 };
-
-// TODO: последняя минута изгнанного
-// TODO: если выставлен один, он сразу кикнут
-// TODO: попил, второй голосование, после голосование если не попилили
 </script>
 
 <template>
@@ -73,7 +75,12 @@ const onContinue = () => {
     <div class="my-auto">
       <div v-if="sameVotes" class="mb-4">
         <div class="text-xl font-bold text-center">
-          {{ t('page.Day.VotingResult.notOneKick') }}
+          <template v-if="day.isSecondVoting">
+            {{ t('page.Day.VotingResult.notOneKickSecond') }}
+          </template>
+          <template v-else>
+            {{ t('page.Day.VotingResult.notOneKick') }}
+          </template>
         </div>
       </div>
       <div v-else class="mb-4">
@@ -88,7 +95,10 @@ const onContinue = () => {
         </div>
       </div>
     </div>
-    <UiButtonProgress v-if="sameVotes" class="w-full mt-auto" @click="onRepeatVoting">
+    <UiButtonProgress v-if="sameVotes && day.isSecondVoting" class="w-full mt-auto" @click="onFinalVoting">
+      {{ t('page.Day.VotingResult.finalVote') }}
+    </UiButtonProgress>
+    <UiButtonProgress v-else-if="sameVotes" class="w-full mt-auto" @click="onRepeatVoting">
       {{ t('page.Day.VotingResult.nextVote') }}
     </UiButtonProgress>
     <UiButtonProgress v-else class="w-full mt-auto" @click="onContinue">

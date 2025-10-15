@@ -21,7 +21,7 @@ type GameStore = {
   players: Player[];
   gamePlayers: GamePlayer[];
   roles: Record<Role["id"], Role>;
-  stage: "startMenu" | "watchRoles" | "mafiaKnowing" | "night" | "day" | "dayDiscussion" | "dayVoting" | "dayVotingResult" | "end" | "master";
+  stage: "startMenu" | "watchRoles" | "mafiaKnowing" | "night" | "day" | "dayDiscussion" | "dayVoting" | "dayVotingResult" | "dayVotingFinal" | "end" | "master";
 };
 
 type GameWinner = "peaceful" | "mafia" | false;
