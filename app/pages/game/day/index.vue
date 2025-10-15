@@ -10,7 +10,7 @@ const deadPlayer = computed(() => find(game.gamePlayers, { id: deadPlayerId.valu
 
 const onClick = () => {
   game.changeStage("dayDiscussion");
-  day.setInitial(game.gamePlayers);
+  day.startDay();
   navigateTo(ROUTES.game.dayDiscussion);
 };
 </script>

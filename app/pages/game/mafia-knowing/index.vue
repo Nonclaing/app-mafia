@@ -7,7 +7,7 @@ const sounds = reactive({
   end: useSound("/audio/mafia-knowing-end.mp3", { onend: () => {
     sounds.dayStart.play();
     game.changeStage("dayDiscussion");
-    day.setInitial(game.gamePlayers);
+    day.startDay();
     navigateTo(ROUTES.game.dayDiscussion);
   } }),
   dayStart: useSound("/audio/night-start.mp3"), // TODO: поменять аудио

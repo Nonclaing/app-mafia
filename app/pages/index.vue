@@ -2,6 +2,7 @@
 const { t } = useI18n();
 const game = useGameStore();
 const night = useNightStore();
+const day = useDayStore();
 const players = computed(() => game.players);
 const allRolesCount = computed(() => game.allRolesCount);
 
@@ -9,6 +10,7 @@ const onStart = () => {
   game.spreadRoles();
   game.changeStage("watchRoles");
   night.setInitial(game.gamePlayers);
+  day.setInitial();
   navigateTo(ROUTES.game.watchRoles);
 };
 </script>

@@ -5,8 +5,8 @@ const STORAGE_KEY = "dayStore";
 export const useDayStore = defineStore("day", () => {
   const initialState: DayStore = {
     players: [],
-    currentIdx: -1,
-    currentStep: -1,
+    currentIdx: 0,
+    currentStep: 0,
     isSecondVoting: false,
   };
 
@@ -36,26 +36,37 @@ export const useDayStore = defineStore("day", () => {
   };
 
   const resetSteps = () => {
-    data.currentIdx = -1;
-    data.currentStep = -1;
+    data.currentIdx = data.currentStep;
     data.isSecondVoting = false;
-    next();
+    if (!currentIsAvailableToPlay()) next();
   };
 
-  const setInitial = (players: GamePlayer[]) => {
-    data.players = map(players, ({ id, role, name, fullName, number }) => ({ id, role, name, fullName, number, completedActions: {} as Record<DayPlayerAction, DayCompletedAction> }));
+  const startDay = () => {
+    data.players = map(useGameStore().gamePlayers, ({ id, role, name, fullName, number }) => ({ id, role, name, fullName, number, completedActions: {} as Record<DayPlayerAction, DayCompletedAction> }));
+    data.currentStep = useWrap(data.currentStep + 1, 0, data.players.length);
     resetSteps();
   };
 
-  const next = () => {
-    if (data.currentIdx === data.players.length - 1) return false;
+  const setInitial = () => {
+    data.players = map(useGameStore().gamePlayers, ({ id, role, name, fullName, number }) => ({ id, role, name, fullName, number, completedActions: {} as Record<DayPlayerAction, DayCompletedAction> }));
+    data.currentStep = -1;
+    data.currentIdx = 0;
+    data.isSecondVoting = false;
+  };
 
-    data.currentIdx += 1;
+  const currentIsAvailableToPlay = (): boolean => {
     const player = find(useGameStore().gamePlayers, { id: current.value.id });
-    if (get(player, "state.kill")) next();
-    if (get(player, "state.kick")) next();
+    if (!player) return false;
+    if (get(player, "state.kill")) return false;
+    if (get(player, "state.kick")) return false;
+    return true;
+  };
 
-    data.currentStep += 1;
+  const next = () => {
+    if (data.currentIdx === useWrap(data.currentStep + data.players.length - 1, 0, data.players.length)) return false;
+
+    data.currentIdx = useWrap(data.currentIdx + 1, 0, data.players.length);
+    if (!currentIsAvailableToPlay()) next();
     return true;
   };
 
@@ -74,6 +85,7 @@ export const useDayStore = defineStore("day", () => {
     currentStep: computed(() => data.currentStep),
     next,
     action,
+    startDay,
     setInitial,
     resetSteps,
     repeatVoting,
