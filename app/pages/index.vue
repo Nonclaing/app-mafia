@@ -1,35 +1,40 @@
 <script setup lang="ts">
-import getDetail from "~/api/services/item/get";
-
 const { t } = useI18n();
-const { can } = useAbility();
-const { data } = await useAsyncData("item", () => getDetail("123"));
+const game = useGameStore();
+const night = useNightStore();
+const day = useDayStore();
+const players = computed(() => game.players);
+const allRolesCount = computed(() => game.allRolesCount);
 
-useHead({
-  title: t("pages.root.title"),
-});
+const onStart = () => {
+  game.spreadRoles();
+  game.changeStage("watchRoles");
+  night.setInitial(game.gamePlayers);
+  day.setInitial();
+  navigateTo(ROUTES.game.watchRoles);
+};
 </script>
 
 <template>
-  <div class="container mx-auto">
-    <div class="prose">
-      <div class="grid gap-4">
-        <div>
-          <h2>Пример ограничения по ролям</h2>
-          <div>{{ can('read', 'Item') }}</div>
-        </div>
-        <div>
-          <h2>Пример компонента формы</h2>
-          <UiCard />
-        </div>
-        <div>
-          {{ data }}
-        </div>
+  <div>
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-8">
+        {{ t('players') }}
+      </h2>
+      <div class="flex flex-col">
+        <SetPlayers />
       </div>
-    </div>
+    </section>
+    <section class="mb-10">
+      <h2 class="text-xl font-bold mb-8">
+        {{ t('roles') }}
+      </h2>
+      <div class="flex flex-col">
+        <SelectRoles />
+      </div>
+    </section>
+    <button class="btn btn-primary uppercase mt-4 w-full" :disabled="useSize(players) !== allRolesCount || !useSize(players)" @click="onStart">
+      {{ t('startGame') }}
+    </button>
   </div>
 </template>
-
-<style module>
-
-</style>

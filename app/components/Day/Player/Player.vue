@@ -1,0 +1,30 @@
+<script setup lang="ts">
+const props = defineProps<{
+  player: GamePlayer;
+}>();
+const emit = defineEmits<{
+  toVote: [value: string];
+}>();
+const { t } = useI18n();
+const name = computed(() => props.player.fullName);
+
+const onSuccess = () => {
+  emit("toVote", props.player.id);
+};
+</script>
+
+<template>
+  <div class="flex flex-col items-center bg-base-100 shadow-sm rounded-md text-center relative p-2 py-4">
+    <img class="w-[60px] h-[60px] object-contain" src="/images/mafia.png">
+    <div class="p-2">
+      <h2 class="font-bold break-words">
+        {{ name }}
+      </h2>
+    </div>
+    <UiButtonConfirmation class="mt-auto" :title="t('components.Day.Player.confirm', { name })" @success="onSuccess">
+      <button class="btn btn-primary">
+        {{ t('components.Day.Player.toVote') }}
+      </button>
+    </UiButtonConfirmation>
+  </div>
+</template>
