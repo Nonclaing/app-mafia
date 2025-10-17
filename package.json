@@ -20,7 +20,8 @@
     "start": "pm2 start .ci/pm2/config.cjs",
     "release": "bush cli/release",
     "type-check": "npm run build && vue-tsc --noEmit -p ./.nuxt/tsconfig.json",
-    "setup": "npm i && npm run openapi && npm run dev:init"
+    "setup": "npm i && npm run openapi && npm run dev:init",
+    "ci-build": "npm run openapi && npm run dev:init && npm run generate"
   },
   "devDependencies": {
     "@casl/ability": "^6.7.3",
