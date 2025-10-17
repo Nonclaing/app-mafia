@@ -1,7 +1,9 @@
 {
-  "name": "nuxt-app",
-  "version": "1.0.12",
-  "private": true,
+  "name": "@intervolga/app-mafia",
+  "version": "1.0.0",
+  "publishConfig": {
+    "registry": "https://gitlab.intervolga.ru/api/v4/projects/1979/packages/npm/"
+  },
   "type": "module",
   "scripts": {
     "build": "nuxt build",
