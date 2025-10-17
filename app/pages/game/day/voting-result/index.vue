@@ -82,6 +82,7 @@ const onContinue = () => {
             {{ t('page.Day.VotingResult.notOneKick') }}
           </template>
         </div>
+        <UiStopwatch v-if="!day.isSecondVoting" />
       </div>
       <div v-else class="mb-4">
         <template v-if="kickedPlayer">

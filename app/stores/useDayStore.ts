@@ -10,7 +10,6 @@ export const useDayStore = defineStore("day", () => {
     isSecondVoting: false,
   };
 
-  // TODO: сдвиг хода на 1
   const initialData = useLocalStorage(STORAGE_KEY, initialState)!;
   const data = reactive<DayStore>(initialData.value);
   const current = computed(() => get(data.players, data.currentIdx)!);

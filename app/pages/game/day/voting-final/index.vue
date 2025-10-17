@@ -42,6 +42,10 @@ const next = () => {
     while (hasNext.value && includes(votedPlayersId.value, day.current.id)) hasNext.value = day.next();
   }
 };
+
+onBeforeMount(() => {
+  if (includes(votedPlayersId.value, day.current.id)) next();
+});
 </script>
 
 <template>
@@ -92,8 +96,7 @@ const next = () => {
         <span class="font-bold">{{ t('page.Day.VotingFinal.forSave') }}</span>
         {{ join(useMap(voteToSave, 'fullName'), ', ') }}
       </div>
-
-      <div class="mt-auto">
+      <div :key="day.current.id" class="mt-auto">
         <UiStopwatch v-if="isKicked" class="mb-4" />
         <UiButtonProgress class="w-full" @click="onEnd">
           {{ t('continue') }}
