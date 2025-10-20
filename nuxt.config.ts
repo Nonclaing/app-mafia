@@ -2,6 +2,7 @@
 import tailwindcss from "@tailwindcss/vite";
 
 const NUXT_PUBLIC_API_URL = process.env.NUXT_PUBLIC_API_URL;
+const sw = process.env.SW === "true";
 
 export default defineNuxtConfig({
   modules: [
@@ -64,6 +65,7 @@ export default defineNuxtConfig({
         ErrorMessage: "VeeErrorMessage",
       },
     }],
+    ["@vite-pwa/nuxt", {}],
   ],
   plugins: [
     "~/ability/plugins/abilities/index.ts",
@@ -107,5 +109,57 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss(),
     ],
+  },
+  pwa: {
+    strategies: "injectManifest",
+    srcDir: "service-worker",
+    filename: "sw.ts",
+    registerType: "autoUpdate",
+    manifest: {
+      name: "Nuxt Vite PWA",
+      short_name: "NuxtVitePWA",
+      display: "fullscreen",
+      prefer_related_applications: false,
+      icons: [
+        {
+          src: "images/mafia.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "images/mafia.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+        {
+          src: "images/mafia.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any maskable",
+        },
+      ],
+    },
+    workbox: {
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+    },
+    injectManifest: {
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+    },
+    client: {
+      installPrompt: true,
+      // you don't need to include this: only for testing purposes
+      // if enabling periodic sync for update use 1 hour or so (periodicSyncForUpdates: 3600)
+      periodicSyncForUpdates: 20,
+    },
+    experimental: {
+      includeAllowlist: true,
+    },
+    devOptions: {
+      enabled: true,
+      suppressWarnings: true,
+      navigateFallback: "/",
+      navigateFallbackAllowlist: [/^\/$/],
+      type: "module",
+    },
   },
 });
