@@ -35,6 +35,7 @@ const onNext = () => {
   }
   else sounds.alive.play();
 
+  game.changeStage("day");
   navigateTo(ROUTES.game.day);
 };
 
