@@ -16,6 +16,7 @@ build:dist:
     BUILD_COMMAND: "npm run ci-build"
     DIST_DIR: ".output/public" # Папка с dist'ом, которая попадет в артефакты
     FRONT_DIR: "./" # Корневая папка фронта+
+  retry: 2
   only:
     - master # Триггер только на ветку master
 
