@@ -11,7 +11,7 @@ const props = defineProps<{
 
 const { t } = useI18n();
 const nameRef = toRef<string>(props.name);
-const dialogChange = ref<boolean>(false);;
+const dialogChange = ref<boolean>(false); ;
 const input = shallowRef();
 const { focused } = useFocus(input);
 
@@ -46,7 +46,7 @@ const onDelete = () => {
         {{ fullName }}
       </h2>
     </div>
-    <UiDialog v-model="dialogChange" :title="t('changeName')">
+    <UiDialog v-model="dialogChange" :title="t('components.Player.changeName')">
       <div>
         <div class="grid grid-cols-[1fr_auto]">
           <label class="input w-full">

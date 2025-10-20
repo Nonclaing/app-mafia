@@ -92,7 +92,9 @@ export default defineNuxtConfig({
     fallback: "dark",
   },
   runtimeConfig: {
-    public: {},
+    public: {
+      enableRedirect: process.env.NUXT_PUBLIC_ENABLED_REDIRECT,
+    },
   },
   routeRules: {},
   compatibilityDate: "2025-10-09",

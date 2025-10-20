@@ -130,6 +130,11 @@ export const useGameStore = defineStore("game", () => {
     });
   };
 
+  const changeStage = (stage: GameStore["stage"]) => {
+    data.stage = stage;
+    useStageStore().changeStage(stage);
+  };
+
   return {
     winner,
     players: computed(() => data.players),
@@ -145,6 +150,6 @@ export const useGameStore = defineStore("game", () => {
     nightAction,
     spreadRoles,
     deletePlayer,
-    changeStage: (stage: GameStore["stage"]) => data.stage = stage,
+    changeStage,
   };
 });

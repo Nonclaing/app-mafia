@@ -21,9 +21,11 @@ type GameStore = {
   players: Player[];
   gamePlayers: GamePlayer[];
   roles: Record<Role["id"], Role>;
-  stage: "startMenu" | "watchRoles" | "mafiaKnowing" | "night" | "day" | "dayDiscussion" | "dayVoting" | "dayVotingResult" | "dayVotingFinal" | "end" | "master";
+  stage: GameStage;
 };
 
 type GameWinner = "peaceful" | "mafia" | false;
 
 type GamePlayerState = "kick" | "kill" | "donCheck" | "sheriffCheck";
+
+type GameStage = "startMenu" | "watchRoles" | "mafiaKnowing" | "night" | "day" | "dayDiscussion" | "dayVoting" | "dayVotingResult" | "dayVotingFinal" | "end" | "master";
