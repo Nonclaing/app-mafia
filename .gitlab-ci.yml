@@ -12,12 +12,12 @@ stages:
 build:dist:
   extends: .dist_build # Наследуемся от шаблона для сборки
   variables:
-    BUILD_IMAGE: "node:22.16.0" # Можно поменять версию ноды
+    BUILD_IMAGE: "node:22.14.0" # Можно поменять версию ноды
     BUILD_COMMAND: "npm run ci-build"
-    DIST_DIR: "dist" # Папка с dist'ом, которая попадет в артефакты
-    FRONT_DIR: "./" # Корневая папка фронта
+    DIST_DIR: ".output/public" # Папка с dist'ом, которая попадет в артефакты
+    FRONT_DIR: "./" # Корневая папка фронта+
   only:
-    - master # Триггер только на ветку stage
+    - master # Триггер только на ветку master
 
 # Через двоеточие указываем название стенда на случай если их будет несколько
 deploy:master-front:
@@ -26,15 +26,15 @@ deploy:master-front:
     SSH_HOST: "ivdev.ru"
     SSH_PORT: "2222"
     SSH_USER: "app-mafia"
-    REMOTE_DOC_ROOT: "/home/bitrix/www" # Абсолютный путь на сервере до корня с сайтом
-    LOCAL_DIST_ROOT: "dist" # Относительный путь к папке с собранным фронтом (из артефактов)
-    REMOTE_DIST_PATH: "" # Путь к папке куда нужно задеплоить собранный фронт (относительно REMOTE_DOC_ROOT)
+    REMOTE_DOC_ROOT: "/home/bitrix" # Абсолютный путь на сервере до корня с сайтом
+    LOCAL_DIST_ROOT: ".output/public" # Относительный путь к папке с собранным фронтом (из артефактов)
+    REMOTE_DIST_PATH: "www" # Путь к папке куда нужно задеплоить собранный фронт (относительно REMOTE_DOC_ROOT)
   needs:
     - job: build:dist
       artifacts: true
   environment:
     name: front # Придумываем код для окружения
-  stage: deploy
+  stage: master
   only:
-    - master # Если деплоить нужно автоматически, а не руками, то поменять на only: <ветка>
+    - master
 
