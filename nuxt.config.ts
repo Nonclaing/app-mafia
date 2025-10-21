@@ -2,7 +2,6 @@
 import tailwindcss from "@tailwindcss/vite";
 
 const NUXT_PUBLIC_API_URL = process.env.NUXT_PUBLIC_API_URL;
-const sw = process.env.SW === "true";
 
 export default defineNuxtConfig({
   modules: [
@@ -112,12 +111,12 @@ export default defineNuxtConfig({
   },
   pwa: {
     strategies: "injectManifest",
-    srcDir: "service-worker",
-    filename: "sw.ts",
+    srcDir: "plugins/service-worker",
+    filename: "index.client.ts",
     registerType: "autoUpdate",
     manifest: {
-      name: "Nuxt Vite PWA",
-      short_name: "NuxtVitePWA",
+      name: "App Mafia",
+      short_name: "Mafia",
       display: "fullscreen",
       prefer_related_applications: false,
       icons: [
@@ -140,22 +139,38 @@ export default defineNuxtConfig({
       ],
     },
     workbox: {
-      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+      globPatterns: ["**/*.{js,css,html,png,svg,ico,woff2,mp3,json}"],
+      globIgnores: ["**/200.html", "**/404.html"],
+      runtimeCaching: [
+        // Cache pages with NetworkFirst strategy
+        {
+          urlPattern: /\/.*/, // Matches your page routes
+          handler: "NetworkFirst",
+          options: {
+            cacheName: "pages-cache",
+            expiration: {
+              maxEntries: 50,
+              maxAgeSeconds: 24 * 60 * 60, // 1 day
+            },
+          },
+        },
+      ],
     },
     injectManifest: {
-      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
+      globPatterns: ["**/*.{js,css,html,png,svg,ico,woff2,mp3,json}"],
+      globIgnores: ["**/200.html", "**/404.html"],
     },
     client: {
       installPrompt: true,
       // you don't need to include this: only for testing purposes
-      // if enabling periodic sync for update use 1 hour or so (periodicSyncForUpdates: 3600)
+      // if enabling periodic sync for update use 1 hour or so (periodicSyncForUpdates: 3600) TODO: убрать
       periodicSyncForUpdates: 20,
     },
     experimental: {
       includeAllowlist: true,
     },
     devOptions: {
-      enabled: true,
+      enabled: false,
       suppressWarnings: true,
       navigateFallback: "/",
       navigateFallbackAllowlist: [/^\/$/],

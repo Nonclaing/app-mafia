@@ -1,0 +1,10 @@
+# Включаем модуль переписывания
+RewriteEngine On
+# Если URI не заканчивается слэшем
+RewriteCond %{REQUEST_URI} !/$
+# и это не существующий файл
+RewriteCond %{REQUEST_FILENAME} !-f
+# и не похоже на запрос к файлу с расширением (например .jpg, .css, .html)
+RewriteCond %{REQUEST_URI} !\.[^/]+$
+# тогда редиректим на https и добавляем слэш (с сохранением query string)
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI}/ [R=301,L,QSA]
