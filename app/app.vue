@@ -21,7 +21,7 @@ useSchemaOrg([
 </script>
 
 <template>
-  <!--  <VitePwaManifest /> -->
+  <VitePwaManifest />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
