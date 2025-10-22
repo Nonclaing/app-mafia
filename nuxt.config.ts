@@ -64,6 +64,7 @@ export default defineNuxtConfig({
         ErrorMessage: "VeeErrorMessage",
       },
     }],
+    ["@vite-pwa/nuxt", {}],
   ],
   plugins: [
     "~/ability/plugins/abilities/index.ts",
@@ -107,5 +108,73 @@ export default defineNuxtConfig({
     plugins: [
       tailwindcss(),
     ],
+  },
+  pwa: {
+    strategies: "injectManifest",
+    srcDir: "plugins/service-worker",
+    filename: "index.client.ts",
+    registerType: "autoUpdate",
+    manifest: {
+      name: "App Mafia",
+      short_name: "Mafia",
+      display: "fullscreen",
+      prefer_related_applications: false,
+      icons: [
+        {
+          src: "images/mafia.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "images/mafia.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+        {
+          src: "images/mafia.png",
+          sizes: "512x512",
+          type: "image/png",
+          purpose: "any maskable",
+        },
+      ],
+    },
+    workbox: {
+      globPatterns: ["**/*.{js,css,html,png,svg,ico,woff2,mp3,json}"],
+      globIgnores: ["**/200.html", "**/404.html"],
+      runtimeCaching: [
+        // Cache pages with NetworkFirst strategy
+        {
+          urlPattern: /\/.*/, // Matches your page routes
+          handler: "NetworkFirst",
+          options: {
+            cacheName: "pages-cache",
+            expiration: {
+              maxEntries: 50,
+              maxAgeSeconds: 24 * 60 * 60, // 1 day
+            },
+          },
+        },
+      ],
+    },
+    injectManifest: {
+      globPatterns: ["**/*.{js,css,html,png,svg,ico,woff2,mp3,json}"],
+      globIgnores: ["**/200.html", "**/404.html"],
+    },
+    client: {
+      installPrompt: true,
+      // you don't need to include this: only for testing purposes
+      // if enabling periodic sync for update use 1 hour or so (periodicSyncForUpdates: 3600) TODO: убрать
+      periodicSyncForUpdates: 20,
+    },
+    experimental: {
+      includeAllowlist: true,
+    },
+    devOptions: {
+      enabled: false,
+      suppressWarnings: true,
+      navigateFallback: "/",
+      navigateFallbackAllowlist: [/^\/$/],
+      type: "module",
+    },
   },
 });

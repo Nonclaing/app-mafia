@@ -12,8 +12,6 @@ useSchemaOrg([
 // TODO: роли доступа
 // TODO: режим ведущего
 // TODO: настройки
-// TODO: PWA
-// TODO: офлайн режим
 // TODO: API
 // TODO: онлайн режим
 // TODO: автозаполнение ролей
@@ -21,6 +19,7 @@ useSchemaOrg([
 </script>
 
 <template>
+  <VitePwaManifest />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
