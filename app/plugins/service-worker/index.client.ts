@@ -4,11 +4,12 @@
 import { clientsClaim } from "workbox-core";
 import { cleanupOutdatedCaches, createHandlerBoundToURL, precacheAndRoute } from "workbox-precaching";
 import { registerRoute, NavigationRoute } from "workbox-routing";
-import { CacheFirst, NetworkFirst, StaleWhileRevalidate } from "workbox-strategies";
+import { CacheFirst, StaleWhileRevalidate } from "workbox-strategies";
 import { ExpirationPlugin } from "workbox-expiration";
 import { CacheableResponsePlugin } from "workbox-cacheable-response";
 import { includes } from "es-toolkit/compat";
 
+// TODO: доработать, отобразить уведомления об отсутствии интернета и попытке переподключиться
 declare let self: ServiceWorkerGlobalScope;
 
 // ==================================================
@@ -16,6 +17,8 @@ declare let self: ServiceWorkerGlobalScope;
 // ==================================================
 precacheAndRoute(self.__WB_MANIFEST);
 cleanupOutdatedCaches();
+//
+
 // ==================================================
 // Навигационные запросы (HTML, маршруты SPA)
 // ==================================================
@@ -25,6 +28,8 @@ if (import.meta.env.DEV)
 registerRoute(
   new NavigationRoute(createHandlerBoundToURL("/"), { allowlist }),
 );
+//
+
 // ==================================================
 // JS, CSS — StaleWhileRevalidate (быстро, с автообновлением)
 // ==================================================
@@ -42,6 +47,8 @@ registerRoute(
     ],
   }),
 );
+//
+
 // ==================================================
 // Изображения — CacheFirst (экономия трафика)
 // ==================================================
@@ -58,6 +65,8 @@ registerRoute(
     ],
   }),
 );
+//
+
 // ==================================================
 // Аудио — CacheFirst (экономия трафика)
 // ==================================================
@@ -74,6 +83,8 @@ registerRoute(
     ],
   }),
 );
+//
+
 // ==================================================
 // Шрифты (.woff2) — CacheFirst (идеально для статичных ресурсов)
 // ==================================================
@@ -90,6 +101,7 @@ registerRoute(
     ],
   }),
 );
+//
 
 // ==================================================
 // Финализация
