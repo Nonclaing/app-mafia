@@ -4,8 +4,9 @@
 
 <template>
   <div class="flex justify-center px-4 h-full flex-1">
-    <div class="container py-6">
+    <div class="container">
       <ClientOnly>
+        <Header />
         <slot />
       </ClientOnly>
     </div>
