@@ -54,7 +54,9 @@ export const useGameStore = defineStore("game", () => {
   };
 
   const deletePlayer = (id: string) => {
-    data.players = filter(data.players, (player) => player.id !== id);
+    data.players = map(filter(data.players, (player) => player.id !== id), (player, idx) => {
+      return { ...player, number: idx + 1, fullName: `${player.name} (${idx + 1})` };
+    });
   };
 
   const editPlayer = (id: string, name: string) => {
