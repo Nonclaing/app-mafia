@@ -1,6 +1,6 @@
 {
   "name": "@intervolga/app-mafia",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "publishConfig": {
     "registry": "https://gitlab.intervolga.ru/api/v4/projects/1979/packages/npm/"
   },
