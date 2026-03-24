@@ -1,16 +1,27 @@
 <script setup lang="ts">
-const { t } = useI18n();
+import { size } from "es-toolkit/compat";
+
+const checkHttp = async () => {
+  const username = "intervolga";
+  const password = "intervolga34";
+  const auth = btoa(`${username}:${password}`);
+  const { data } = await useFetch("https://bugzilla.ivdev.ru/", {
+    headers: {
+      Authorization: `Basic ${auth}`,
+    },
+  });
+  alert(data.value);
+};
+
 const game = useGameStore();
 const night = useNightStore();
-const day = useDayStore();
 const players = computed(() => game.players);
 const allRolesCount = computed(() => game.allRolesCount);
 
 const onStart = () => {
   game.spreadRoles();
-  game.changeStage("watchRoles");
+  game.changeStage("showRoles");
   night.setInitial(game.gamePlayers);
-  day.setInitial();
   navigateTo(ROUTES.game.watchRoles);
 };
 </script>
@@ -19,7 +30,7 @@ const onStart = () => {
   <div>
     <section class="mb-10">
       <h2 class="text-xl font-bold mb-8">
-        {{ t('players') }}
+        Игроки
       </h2>
       <div class="flex flex-col">
         <SetPlayers />
@@ -27,14 +38,22 @@ const onStart = () => {
     </section>
     <section class="mb-10">
       <h2 class="text-xl font-bold mb-8">
-        {{ t('roles') }}
+        Роли
       </h2>
       <div class="flex flex-col">
         <SelectRoles />
       </div>
     </section>
-    <button class="btn btn-primary uppercase mt-4 w-full" :disabled="useSize(players) !== allRolesCount || !useSize(players)" @click="onStart">
-      {{ t('startGame') }}
+    <button class="btn btn-primary uppercase mt-4 w-full" :disabled="size(players) !== allRolesCount || !size(players)" @click="onStart">
+      Начать игру
+    </button>
+
+    <MobileCameraButton />
+    <MobileNotificationButton />
+    <a class="link block mb-4" href="https://habr.com/ru/articles/844612/">ссылка на внешний сервис внутри приложения</a>
+    <a class="link block" href="https://developer.android.com/studio/debug?hl=ru#groovy">ссылка на внешний сервис внутри отдельного браузера</a>
+    <button class="btn" @click="checkHttp">
+      проверка http авторизации
     </button>
   </div>
 </template>
