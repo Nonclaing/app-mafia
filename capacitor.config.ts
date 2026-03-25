@@ -9,6 +9,11 @@ const config: CapacitorConfig = {
     allowNavigation: ["/rest/**", "habr.com"],
   },
   plugins: {
+    plugins: {
+      CapacitorUpdater: {
+        autoUpdate: false,
+      },
+    },
     CapacitorHttp: {
       enabled: true,
     },
@@ -22,19 +27,19 @@ const config: CapacitorConfig = {
       resizeOnFullScreen: false,
     },
     EdgeToEdge: {
-      backgroundColor: "#ffffff",
-      navigationBarColor: "#ffffff",
-      statusBarColor: "#ffffff",
+      backgroundColor: "#0f172b",
+      navigationBarColor: "#0f172b",
+      statusBarColor: "#0f172b",
     },
     StatusBar: {
       overlaysWebView: false,
       style: Style.Light,
-      backgroundColor: "#ffffffff",
+      backgroundColor: "#0f172b",
     },
     SplashScreen: {
       launchAutoHide: true,
       launchFadeOutDuration: 500, // плавное затухание (опционально)
-      backgroundColor: "#000", // цвет фона под сплешем
+      backgroundColor: "#0f172b", // цвет фона под сплешем
       androidScaleType: "CENTER_CROP", // очень важно для Android
       splashFullScreen: true,
       splashImmersive: true, // убирает статус-бар и навигацию
