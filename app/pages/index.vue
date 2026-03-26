@@ -18,9 +18,15 @@ const night = useNightStore();
 const players = computed(() => game.players);
 const allRolesCount = computed(() => game.allRolesCount);
 
+const { $appUpdater } = useNuxtApp();
+
+const version = computedAsync(async () => {
+  return await $appUpdater.getAppVersion();
+});
+
 const onStart = () => {
   game.spreadRoles();
-  game.changeStage("showRoles");
+  game.changeStage("watchRoles");
   night.setInitial(game.gamePlayers);
   navigateTo(ROUTES.game.watchRoles);
 };
@@ -55,5 +61,6 @@ const onStart = () => {
     <button class="btn" @click="checkHttp">
       проверка http авторизации
     </button>
+    <div>проверка стандартного обновления {{ version }}</div>
   </div>
 </template>

@@ -8,6 +8,12 @@ useSchemaOrg([
   }),
   defineWebPage(),
 ]);
+
+const appUpdate = useAppUpdate();
+
+onMounted(() => {
+  appUpdate.init().catch(console.error);
+});
 // TODO: работа со звуками
 // TODO: роли доступа
 // TODO: режим ведущего

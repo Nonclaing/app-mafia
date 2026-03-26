@@ -70,7 +70,7 @@ export default defineNuxtConfig({
     "~/ability/plugins/abilities/index.ts",
     "~/api/plugins/bitrix-sessid/index.client.ts",
   ],
-  ssr: true,
+  ssr: false,
   imports: {
     imports: [
       { from: "@casl/vue", name: "useAbility" },
@@ -95,6 +95,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       enableRedirect: process.env.NUXT_PUBLIC_ENABLED_REDIRECT,
+      githubRepo: process.env.NUXT_PUBLIC_GITHUB_REPO ?? "owner/repo",
+      appStoreUrl: process.env.NUXT_PUBLIC_APP_STORE_URL ?? "",
     },
   },
   routeRules: {},

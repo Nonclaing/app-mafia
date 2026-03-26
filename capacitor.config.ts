@@ -11,7 +11,7 @@ const config: CapacitorConfig = {
   plugins: {
     // OTA (hot-updates) обновления
     CapacitorUpdater: {
-      autoUpdate: false,
+      autoUpdate: false, // Создаём ручное обновление
     },
     // Работа с http
     CapacitorHttp: {

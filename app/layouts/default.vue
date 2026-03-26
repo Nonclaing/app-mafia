@@ -7,6 +7,7 @@
     <div class="container py-6">
       <ClientOnly>
         <slot />
+        <AppUpdateBanner />
       </ClientOnly>
     </div>
   </div>
