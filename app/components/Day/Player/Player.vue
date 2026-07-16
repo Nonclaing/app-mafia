@@ -15,7 +15,7 @@ const onSuccess = () => {
 
 <template>
   <div class="flex flex-col items-center bg-base-100 shadow-sm rounded-md text-center relative p-2 py-4">
-    <img class="w-[60px] h-[60px] object-contain" src="/images/mafia.png">
+    <img class="w-[60px] h-[60px] object-contain" :src="useAssetUrl('/images/mafia.png')">
     <div class="p-2">
       <h2 class="font-bold break-words">
         {{ name }}

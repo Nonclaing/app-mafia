@@ -1,8 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from "@tailwindcss/vite";
 
-const NUXT_PUBLIC_API_URL = process.env.NUXT_PUBLIC_API_URL;
-
 export default defineNuxtConfig({
   modules: [
     ["@nuxtjs/device", {}],
@@ -66,10 +64,7 @@ export default defineNuxtConfig({
     }],
     ["@vite-pwa/nuxt", {}],
   ],
-  plugins: [
-    "~/ability/plugins/abilities/index.ts",
-    "~/api/plugins/bitrix-sessid/index.client.ts",
-  ],
+  plugins: [],
   ssr: true,
   imports: {
     imports: [
@@ -78,13 +73,6 @@ export default defineNuxtConfig({
     ],
   },
   devtools: { enabled: true },
-  app: {
-    head: {
-      link: [
-        { rel: "icon", type: "image/png", href: "/favicon.ico" },
-      ],
-    },
-  },
   css: [
     "~/assets/css/tailwind.css",
   ],
@@ -99,11 +87,6 @@ export default defineNuxtConfig({
   },
   routeRules: {},
   compatibilityDate: "2025-10-09",
-  nitro: {
-    devProxy: {
-      "/rest/other": { target: `${NUXT_PUBLIC_API_URL}/rest/other`, changeOrigin: true },
-    },
-  },
   vite: {
     plugins: [
       tailwindcss(),

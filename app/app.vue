@@ -8,6 +8,16 @@ useSchemaOrg([
   }),
   defineWebPage(),
 ]);
+
+useHead({
+  link: [
+    {
+      rel: "icon",
+      type: "image/png",
+      href: useAssetUrl("favicon.png"),
+    },
+  ],
+});
 // TODO: работа со звуками
 // TODO: роли доступа
 // TODO: режим ведущего

@@ -15,8 +15,8 @@ const current = computed(() => night.current);
 const canEndTurn = computed(() => size(completedActions.value) >= size(availableActions.value));
 
 const sounds = reactive({
-  alive: useSound("/audio/day-alive.mp3"),
-  dead: useSound("/audio/day-dead.mp3"),
+  alive: useSound(useAssetUrl("/audio/day-alive.mp3")),
+  dead: useSound(useAssetUrl("/audio/day-dead.mp3")),
 });
 
 const onNext = () => {

@@ -40,7 +40,7 @@ const onDelete = () => {
         <Icon name="mdi:trash" size="24" />
       </button>
     </UiButtonConfirmation>
-    <img class="w-[120px] h-[120px] object-contain" src="/images/mafia.png">
+    <img class="w-[120px] h-[120px] object-contain" :src="useAssetUrl('/images/mafia.png')">
     <div class="p-2">
       <h2 class="font-bold break-words">
         {{ fullName }}

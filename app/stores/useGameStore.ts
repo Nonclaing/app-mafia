@@ -11,25 +11,25 @@ export const useGameStore = defineStore("game", () => {
       mafia: {
         id: "mafia",
         name: t("stores.roles.mafia"),
-        src: "/images/roles/mafia.png",
+        src: useAssetUrl("/images/roles/mafia.png"),
         count: 0,
       },
       don: {
         id: "don",
         name: t("stores.roles.don"),
-        src: "/images/roles/don.png",
+        src: useAssetUrl("/images/roles/don.png"),
         count: 0,
       },
       peaceful: {
         id: "peaceful",
         name: t("stores.roles.peaceful"),
-        src: "/images/roles/peaceful.png",
+        src: useAssetUrl("/images/roles/peaceful.png"),
         count: 0,
       },
       sheriff: {
         id: "sheriff",
         name: t("stores.roles.sheriff"),
-        src: "/images/roles/sheriff.png",
+        src: useAssetUrl("/images/roles/sheriff.png"),
         count: 0,
       },
     },
@@ -38,6 +38,10 @@ export const useGameStore = defineStore("game", () => {
 
   const initialData = useLocalStorage(STORAGE_KEY, initialState)!;
   const data = reactive<GameStore>(initialData.value);
+  data.roles.mafia.src = useAssetUrl("/images/roles/mafia.png");
+  data.roles.don.src = useAssetUrl("/images/roles/don.png");
+  data.roles.peaceful.src = useAssetUrl("/images/roles/peaceful.png");
+  data.roles.sheriff.src = useAssetUrl("/images/roles/sheriff.png");
   const allRolesCount = computed(() => reduce(values(data.roles), (r, v) => r + v.count, 0));
   const winner: ComputedRef<GameWinner> = computed(() => {
     const inGame = filter(data.gamePlayers, ({ state }) => !state.kick && !state.kill);

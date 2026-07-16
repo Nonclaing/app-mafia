@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const sounds = reactive({
-  countdown: useSound("/audio/countdown.mp3"),
+  countdown: useSound(useAssetUrl("/audio/countdown.mp3")),
 });
 
 const props = withDefaults(defineProps<{
@@ -17,7 +17,7 @@ const end = defineModel<boolean>("end", { default: false });
 const model = defineModel<number>({ default: 0 });
 
 const countdown = computed(() => Math.round(props.time / 1000));
-const { remaining, start, stop, pause, resume } = useCountdown(countdown, {
+const { remaining, start } = useCountdown(countdown, {
   onComplete() {
     end.value = true;
   },

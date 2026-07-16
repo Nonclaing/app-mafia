@@ -1,16 +1,16 @@
 <script setup lang="ts">
 const { t } = useI18n();
 const sounds = reactive({
-  start: useSound("/audio/mafia-knowing-start.mp3", { onend: () => {
+  start: useSound(useAssetUrl("/audio/mafia-knowing-start.mp3"), { onend: () => {
     stage.value = "wait";
   } }),
-  end: useSound("/audio/mafia-knowing-end.mp3", { onend: () => {
+  end: useSound(useAssetUrl("/audio/mafia-knowing-end.mp3"), { onend: () => {
     sounds.dayStart.play();
     game.changeStage("dayDiscussion");
     day.startDay();
     navigateTo(ROUTES.game.dayDiscussion);
   } }),
-  dayStart: useSound("/audio/night-start.mp3"), // TODO: поменять аудио
+  dayStart: useSound(useAssetUrl("/audio/night-start.mp3")), // TODO: поменять аудио
 });
 
 const game = useGameStore();
